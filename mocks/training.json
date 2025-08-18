@@ -1,0 +1,229 @@
+{
+  "courses": [
+    {
+      "id": "train-1",
+      "title": "Protocolos de Sepse Atualização 2024",
+      "description": "Novos guidelines para identificação precoce e manejo da sepse",
+      "duration": 8,
+      "points": 25,
+      "tags": ["protocolos", "emergência", "sepse"],
+      "difficulty": "intermediário",
+      "progress": 0,
+      "thumbnail": "https://images.pexels.com/photos/6749779/pexels-photo-6749779.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "A sepse continua sendo uma das principais causas de mortalidade em UTIs. Este módulo apresenta os critérios atualizados para identificação precoce...",
+      "quiz": [
+        {
+          "question": "Qual é o primeiro sinal de alerta para sepse segundo os novos protocolos?",
+          "options": ["Febre alta", "Alteração do estado mental", "Hipotensão", "Taquicardia"],
+          "correct": 1
+        },
+        {
+          "question": "O tempo ideal para início da antibioticoterapia na sepse é:",
+          "options": ["30 minutos", "1 hora", "2 horas", "4 horas"],
+          "correct": 1
+        },
+        {
+          "question": "Qual exame laboratorial é mais específico para sepse?",
+          "options": ["Hemograma", "PCR", "Procalcitonina", "VHS"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "train-2",
+      "title": "Comunicação Assertiva com Pacientes",
+      "description": "Técnicas de comunicação para melhorar a experiência do paciente",
+      "duration": 6,
+      "points": 20,
+      "tags": ["comunicação", "relacionamento", "humanização"],
+      "difficulty": "básico",
+      "progress": 75,
+      "thumbnail": "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "A comunicação efetiva é fundamental para o cuidado humanizado. Neste módulo, você aprenderá técnicas práticas para se comunicar de forma clara e empática...",
+      "quiz": [
+        {
+          "question": "A técnica de escuta ativa inclui:",
+          "options": ["Fazer perguntas diretas", "Manter contato visual", "Dar conselhos imediatos", "Evitar silêncio"],
+          "correct": 1
+        },
+        {
+          "question": "Ao explicar um procedimento, é importante:",
+          "options": ["Usar termos técnicos", "Falar rapidamente", "Verificar o entendimento", "Evitar perguntas"],
+          "correct": 2
+        },
+        {
+          "question": "Em situações de conflito, a melhor abordagem é:",
+          "options": ["Evitar o confronto", "Impor sua opinião", "Buscar compreensão mútua", "Delegar para outros"],
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": "train-3",
+      "title": "Liderança em Enfermagem",
+      "description": "Desenvolva habilidades de liderança para coordenar equipes de saúde",
+      "duration": 10,
+      "points": 35,
+      "tags": ["liderança", "gestão", "equipe"],
+      "difficulty": "avançado",
+      "progress": 30,
+      "thumbnail": "https://images.pexels.com/photos/7659726/pexels-photo-7659726.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "A liderança em enfermagem vai além do conhecimento técnico. Envolve inspirar, motivar e coordenar equipes para oferecer o melhor cuidado possível...",
+      "quiz": [
+        {
+          "question": "Um líder eficaz em enfermagem deve:",
+          "options": ["Tomar todas as decisões sozinho", "Delegar sem acompanhar", "Inspirar e motivar a equipe", "Evitar conflitos"],
+          "correct": 2
+        },
+        {
+          "question": "A melhor forma de dar feedback é:",
+          "options": ["Em público", "Por escrito apenas", "De forma específica e construtiva", "Apenas quando há problemas"],
+          "correct": 2
+        },
+        {
+          "question": "Para motivar a equipe, é importante:",
+          "options": ["Oferecer recompensas financeiras", "Reconhecer conquistas", "Criar competição", "Definir metas impossíveis"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "train-4",
+      "title": "Cuidados Paliativos Humanizados",
+      "description": "Abordagem integral no cuidado a pacientes em fase terminal",
+      "duration": 12,
+      "points": 40,
+      "tags": ["cuidados paliativos", "humanização", "família"],
+      "difficulty": "avançado",
+      "progress": 100,
+      "thumbnail": "https://images.pexels.com/photos/7659571/pexels-photo-7659571.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "Os cuidados paliativos focam na qualidade de vida do paciente e família, proporcionando alívio do sofrimento através de prevenção e tratamento da dor...",
+      "quiz": [
+        {
+          "question": "O principal objetivo dos cuidados paliativos é:",
+          "options": ["Curar a doença", "Prolongar a vida", "Melhorar a qualidade de vida", "Acelerar o processo"],
+          "correct": 2
+        },
+        {
+          "question": "A comunicação com familiares deve ser:",
+          "options": ["Técnica e objetiva", "Empática e clara", "Breve e direta", "Evitada quando possível"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "train-5",
+      "title": "Farmacologia Aplicada à UTI",
+      "description": "Medicamentos críticos e suas interações em terapia intensiva",
+      "duration": 15,
+      "points": 50,
+      "tags": ["farmacologia", "medicamentos", "UTI"],
+      "difficulty": "avançado",
+      "progress": 60,
+      "thumbnail": "https://images.pexels.com/photos/3786126/pexels-photo-3786126.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "Compreenda os principais medicamentos utilizados em UTI, suas indicações, contraindicações e interações medicamentosas...",
+      "quiz": [
+        {
+          "question": "Qual medicamento é primeira linha para choque séptico?",
+          "options": ["Dopamina", "Noradrenalina", "Adrenalina", "Dobutamina"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "train-6",
+      "title": "Prevenção de Infecções Hospitalares",
+      "description": "Protocolos e boas práticas para controle de infecções",
+      "duration": 8,
+      "points": 30,
+      "tags": ["infecção", "prevenção", "segurança"],
+      "difficulty": "intermediário",
+      "progress": 0,
+      "thumbnail": "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "Aprenda as melhores práticas para prevenção de infecções hospitalares, incluindo higienização das mãos, uso de EPIs e isolamento...",
+      "quiz": [
+        {
+          "question": "O tempo mínimo para higienização das mãos é:",
+          "options": ["10 segundos", "20 segundos", "30 segundos", "1 minuto"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "train-7",
+      "title": "Ventilação Mecânica Básica",
+      "description": "Fundamentos da ventilação mecânica invasiva e não-invasiva",
+      "duration": 20,
+      "points": 60,
+      "tags": ["ventilação", "respiratório", "UTI"],
+      "difficulty": "avançado",
+      "progress": 25,
+      "thumbnail": "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "Compreenda os princípios da ventilação mecânica, modos ventilatórios e cuidados de enfermagem específicos...",
+      "quiz": [
+        {
+          "question": "O modo ventilatório mais utilizado em UTI é:",
+          "options": ["Volume controlado", "Pressão controlada", "SIMV", "CPAP"],
+          "correct": 0
+        }
+      ]
+    },
+    {
+      "id": "train-8",
+      "title": "Emergências Cardiológicas",
+      "description": "Reconhecimento e manejo inicial de emergências cardíacas",
+      "duration": 10,
+      "points": 35,
+      "tags": ["cardiologia", "emergência", "arritmias"],
+      "difficulty": "intermediário",
+      "progress": 90,
+      "thumbnail": "https://images.pexels.com/photos/7659726/pexels-photo-7659726.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "Identifique e maneje as principais emergências cardiológicas: IAM, arritmias, insuficiência cardíaca aguda...",
+      "quiz": [
+        {
+          "question": "O primeiro medicamento no protocolo de PCR é:",
+          "options": ["Atropina", "Adrenalina", "Amiodarona", "Lidocaína"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "train-9",
+      "title": "Gestão de Conflitos na Equipe",
+      "description": "Estratégias para resolver conflitos interpessoais no trabalho",
+      "duration": 6,
+      "points": 25,
+      "tags": ["gestão", "conflitos", "relacionamento"],
+      "difficulty": "básico",
+      "progress": 0,
+      "thumbnail": "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "Aprenda técnicas eficazes para identificar, mediar e resolver conflitos na equipe de saúde...",
+      "quiz": [
+        {
+          "question": "A primeira etapa na resolução de conflitos é:",
+          "options": ["Tomar partido", "Escutar todas as partes", "Impor uma solução", "Evitar o problema"],
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": "train-10",
+      "title": "Segurança do Paciente",
+      "description": "Protocolos de segurança e prevenção de eventos adversos",
+      "duration": 8,
+      "points": 30,
+      "tags": ["segurança", "qualidade", "protocolos"],
+      "difficulty": "intermediário",
+      "progress": 45,
+      "thumbnail": "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop",
+      "content": "Conheça os 6 protocolos básicos de segurança do paciente e como implementá-los na prática diária...",
+      "quiz": [
+        {
+          "question": "Quantos protocolos básicos de segurança existem?",
+          "options": ["4", "6", "8", "10"],
+          "correct": 1
+        }
+      ]
+    }
+  ]
+}

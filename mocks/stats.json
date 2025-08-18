@@ -1,0 +1,22 @@
+{
+  "turnover": {
+    "current": 8.3,
+    "previous": 12.1,
+    "trend": "down"
+  },
+  "feedbacks": {
+    "received": 12,
+    "given": 18,
+    "monthlyTarget": 15
+  },
+  "training": {
+    "completed": 32,
+    "inProgress": 5,
+    "totalAvailable": 48
+  },
+  "sessions": {
+    "scheduled": 3,
+    "completed": 12,
+    "thisMonth": 4
+  }
+}

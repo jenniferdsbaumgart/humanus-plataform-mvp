@@ -1,0 +1,52 @@
+{
+  "colleagues": [
+    {
+      "id": "col-1",
+      "name": "Dr. Roberto Santos",
+      "role": "Médico Cardiologista",
+      "department": "UTI Cardiológica"
+    },
+    {
+      "id": "col-2",
+      "name": "Enfermeira Chefe Maria",
+      "role": "Supervisora",
+      "department": "UTI Cardiológica"
+    },
+    {
+      "id": "col-3",
+      "name": "Técnica Carla Mendes",
+      "role": "Técnica em Enfermagem",
+      "department": "UTI Cardiológica"
+    },
+    {
+      "id": "col-4",
+      "name": "Técnico Paulo Lima",
+      "role": "Técnico em Enfermagem",
+      "department": "UTI Cardiológica"
+    },
+    {
+      "id": "col-5",
+      "name": "Enfermeira Junior Luna",
+      "role": "Enfermeira",
+      "department": "UTI Cardiológica"
+    },
+    {
+      "id": "col-6",
+      "name": "Dr. Amanda Costa",
+      "role": "Médica Residente",
+      "department": "UTI Cardiológica"
+    },
+    {
+      "id": "col-7",
+      "name": "Fisioterapeuta João Silva",
+      "role": "Fisioterapeuta",
+      "department": "UTI Cardiológica"
+    },
+    {
+      "id": "col-8",
+      "name": "Nutricionista Clara Santos",
+      "role": "Nutricionista",
+      "department": "UTI Cardiológica"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "meetings": [
+    {
+      "id": "meeting-1",
+      "title": "Planejamento de Carreira - Q1 2024",
+      "date": "2024-01-22T14:00:00Z",
+      "duration": 60,
+      "type": "career-planning",
+      "with": "Supervisora Maria Santos",
+      "status": "scheduled",
+      "agenda": ["Revisão de metas 2023", "Objetivos para 2024", "Plano de desenvolvimento"],
+      "location": "Sala de Reuniões 2",
+      "notes": ""
+    },
+    {
+      "id": "meeting-2",
+      "title": "Feedback Semestral",
+      "date": "2024-02-05T10:30:00Z",
+      "duration": 45,
+      "type": "feedback",
+      "with": "Gerente de Enfermagem",
+      "status": "scheduled",
+      "agenda": ["Avaliação de performance", "Pontos de melhoria", "Reconhecimentos"],
+      "location": "Escritório da Gerência",
+      "notes": ""
+    },
+    {
+      "id": "meeting-3",
+      "title": "Acompanhamento de Desenvolvimento",
+      "date": "2024-01-10T16:00:00Z",
+      "duration": 30,
+      "type": "development",
+      "with": "Supervisora Maria Santos",
+      "status": "completed",
+      "agenda": ["Progresso em liderança", "Desafios enfrentados", "Próximos passos"],
+      "location": "Sala de Reuniões 1",
+      "notes": "Discussão produtiva sobre desenvolvimento de habilidades de liderança. Identificados pontos de melhoria em comunicação assertiva."
+    },
+    {
+      "id": "meeting-4",
+      "title": "Avaliação de Performance - Dezembro",
+      "date": "2023-12-15T09:00:00Z",
+      "duration": 45,
+      "type": "performance",
+      "with": "Dr. Roberto Silva",
+      "status": "completed",
+      "agenda": ["Revisão de metas do trimestre", "Feedback 360°", "Planos para 2024"],
+      "location": "Sala da Direção",
+      "notes": "Excelente performance no último trimestre. Destaque para liderança em situações críticas e mentoria de novos funcionários. Meta para 2024: assumir mais responsabilidades de coordenação."
+    },
+    {
+      "id": "meeting-5",
+      "title": "Sessão de Feedback - Novembro",
+      "date": "2023-11-20T15:30:00Z",
+      "duration": 30,
+      "type": "feedback",
+      "with": "Supervisora Maria Santos",
+      "status": "completed",
+      "agenda": ["Feedback de colegas", "Autoavaliação", "Pontos de desenvolvimento"],
+      "location": "Sala de Reuniões 2",
+      "notes": "Feedback muito positivo da equipe. Reconhecimento pela paciência em ensinar novos procedimentos e pela disponibilidade em ajudar colegas."
+    },
+    {
+      "id": "meeting-6",
+      "title": "Planejamento de Carreira - Q4 2023",
+      "date": "2023-10-25T14:00:00Z",
+      "duration": 60,
+      "type": "career-planning",
+      "with": "Ana Costa - RH",
+      "status": "completed",
+      "agenda": ["Revisão do plano de carreira", "Oportunidades internas", "Capacitações necessárias"],
+      "location": "Sala de RH",
+      "notes": "Discussão sobre progressão para Enfermeira Sênior. Identificadas capacitações em liderança e gestão como próximos passos. Prazo estimado: 6-8 meses."
+    },
+    {
+      "id": "meeting-7",
+      "title": "Desenvolvimento Profissional - Setembro",
+      "date": "2023-09-18T11:00:00Z",
+      "duration": 45,
+      "type": "development",
+      "with": "Dr. Carlos Mendes",
+      "status": "completed",
+      "agenda": ["Competências técnicas", "Soft skills", "Mentoria de novatos"],
+      "location": "Consultório Médico",
+      "notes": "Foco no desenvolvimento de habilidades de mentoria. Sugestão para liderar treinamentos internos e acompanhar integração de novos funcionários."
+    },
+    {
+      "id": "meeting-8",
+      "title": "Feedback Trimestral",
+      "date": "2023-08-10T16:15:00Z",
+      "duration": 30,
+      "type": "feedback",
+      "with": "Supervisora Maria Santos",
+      "status": "completed",
+      "agenda": ["Performance no trimestre", "Relacionamento interpessoal", "Metas futuras"],
+      "location": "Sala de Reuniões 1",
+      "notes": "Trimestre excelente. Destaque para melhoria na comunicação com familiares e iniciativa em propor melhorias nos processos da UTI."
+    },
+    {
+      "id": "meeting-9",
+      "title": "Avaliação Semestral",
+      "date": "2023-07-05T10:00:00Z",
+      "duration": 60,
+      "type": "performance",
+      "with": "Gerente de Enfermagem",
+      "status": "completed",
+      "agenda": ["Avaliação 360°", "Conquistas do semestre", "Desafios superados", "Planos futuros"],
+      "location": "Escritório da Gerência",
+      "notes": "Semestre de grande crescimento profissional. Reconhecimento pela liderança natural e capacidade de trabalhar sob pressão. Recomendação para participar de projetos estratégicos."
+    },
+    {
+      "id": "meeting-10",
+      "title": "Desenvolvimento de Liderança",
+      "date": "2023-06-12T13:30:00Z",
+      "duration": 45,
+      "type": "development",
+      "with": "Ana Costa - RH",
+      "status": "completed",
+      "agenda": ["Habilidades de liderança", "Gestão de conflitos", "Comunicação assertiva"],
+      "location": "Sala de Treinamento",
+      "notes": "Sessão focada em desenvolvimento de liderança. Identificada necessidade de treinamento formal em gestão de pessoas. Inscrita em curso de liderança para o próximo trimestre."
+    }
+  ]
+}

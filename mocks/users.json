@@ -1,0 +1,18 @@
+{
+  "me": {
+    "id": "user-1",
+    "name": "Ana Silva",
+    "role": "Enfermeira Sênior",
+    "avatar": "https://images.pexels.com/photos/5327580/pexels-photo-5327580.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
+    "email": "ana.silva@hospital.com",
+    "department": "UTI Cardiológica",
+    "score": {
+      "total": 2850,
+      "level": 7,
+      "progress": 65,
+      "nextLevelAt": 3000
+    },
+    "joinedAt": "2023-03-15",
+    "lastLogin": "2024-01-15T14:30:00Z"
+  }
+}

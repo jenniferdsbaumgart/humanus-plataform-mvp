@@ -1,0 +1,81 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Tema claro (default) === */
+:root {
+  --background: 0 0% 90.3%;
+  --foreground: 222.2 84% 4.9%;
+
+  --card: 0 0% 94.6%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  --primary: 184 84.5% 35.1%;            /* #1F3A8A (aprox) */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 215 16% 47%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 210 16% 96%;
+  --muted-foreground: 215 12% 35%;
+
+  --accent: 184 84.5% 35.1%;              /* #14B8A6 (turquesa aprox) */
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 226 64% 33%;
+
+  /* Se usar gráficos */
+  --chart-1: 226 64% 33%;
+  --chart-2: 217 91% 60%;
+  --chart-3: 173 72% 41%;
+  --chart-4: 24 95% 53%;
+  --chart-5: 339 82% 52%;
+
+  --radius: 16px; /* casa com seu '2xl: 1rem' no config */
+}
+
+/* === Tema escuro === */
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+
+  --card: 222.2 84% 5.5%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 5.5%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 217 91% 60%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  --secondary: 215 16% 25%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 215 16% 20%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 173 72% 41%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  --destructive: 0 62% 45%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 215 16% 25%;
+  --input: 215 16% 25%;
+  --ring: 217 91% 60%;
+
+  --chart-1: 217 91% 60%;
+  --chart-2: 173 72% 41%;
+  --chart-3: 43 96% 56%;
+  --chart-4: 339 82% 52%;
+  --chart-5: 271 81% 56%;
+}

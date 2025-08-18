@@ -1,0 +1,226 @@
+{
+  "received": [
+    {
+      "id": "fb-r-1",
+      "from": "Dr. Roberto Santos",
+      "fromRole": "Médico Cardiologista",
+      "date": "2024-01-14T10:30:00Z",
+      "title": "Excelente cuidado ao paciente",
+      "content": "Ana demonstrou excepcional atenção aos detalhes durante o atendimento ao paciente crítico ontem. Sua capacidade de antecipar necessidades e comunicar-se claramente com a equipe foi fundamental para o sucesso do tratamento.",
+      "tags": ["cuidado", "comunicação", "proatividade"],
+      "isRead": false,
+      "rating": 5
+    },
+    {
+      "id": "fb-r-2",
+      "from": "Enfermeira Chefe Maria",
+      "fromRole": "Supervisora",
+      "date": "2024-01-12T15:45:00Z",
+      "title": "Liderança durante emergência",
+      "content": "Durante a emergência desta manhã, Ana assumiu naturalmente a coordenação da equipe, mantendo todos organizados e focados. Suas decisões rápidas e assertivas foram cruciais.",
+      "tags": ["liderança", "gestão de crise", "tomada de decisão"],
+      "isRead": true,
+      "rating": 5
+    },
+    {
+      "id": "fb-r-3",
+      "from": "Técnica Carla Mendes",
+      "fromRole": "Técnica em Enfermagem",
+      "date": "2024-01-10T09:20:00Z",
+      "title": "Mentoria e apoio",
+      "content": "Agradeço toda paciência e dedicação em me ensinar os novos procedimentos. Ana sempre se mostra disponível para tirar dúvidas e compartilhar conhecimento.",
+      "tags": ["mentoria", "paciência", "ensino"],
+      "isRead": true,
+      "rating": 4
+    },
+    {
+      "id": "fb-r-4",
+      "from": "Paciente João Silva",
+      "fromRole": "Paciente",
+      "date": "2024-01-08T16:00:00Z",
+      "title": "Cuidado humanizado",
+      "content": "Gostaria de agradecer o carinho e profissionalismo da enfermeira Ana durante minha internação. Ela sempre se mostrou atenciosa e explicou todos os procedimentos com clareza.",
+      "tags": ["humanização", "comunicação", "empatia"],
+      "isRead": true,
+      "rating": 5
+    },
+    {
+      "id": "fb-r-5",
+      "from": "Dr. Amanda Costa",
+      "fromRole": "Médica Residente",
+      "date": "2024-01-07T13:15:00Z",
+      "title": "Colaboração interdisciplinar",
+      "content": "Ana tem sido uma parceira excepcional nas discussões de casos. Suas sugestões sempre agregam valor e demonstram profundo conhecimento clínico.",
+      "tags": ["colaboração", "conhecimento", "interdisciplinar"],
+      "isRead": false,
+      "rating": 5
+    },
+    {
+      "id": "fb-r-6",
+      "from": "Fisioterapeuta João",
+      "fromRole": "Fisioterapeuta",
+      "date": "2024-01-05T11:30:00Z",
+      "title": "Trabalho em equipe exemplar",
+      "content": "A coordenação entre enfermagem e fisioterapia tem sido perfeita com Ana. Ela sempre comunica mudanças no estado dos pacientes e facilita nosso trabalho conjunto.",
+      "tags": ["trabalho em equipe", "comunicação", "coordenação"],
+      "isRead": true,
+      "rating": 4
+    },
+    {
+      "id": "fb-r-7",
+      "from": "Nutricionista Clara",
+      "fromRole": "Nutricionista",
+      "date": "2024-01-03T14:45:00Z",
+      "title": "Atenção aos detalhes nutricionais",
+      "content": "Ana sempre se preocupa em verificar as orientações nutricionais dos pacientes e comunica qualquer alteração no apetite ou aceitação da dieta. Isso faz toda diferença no cuidado integral.",
+      "tags": ["atenção", "cuidado integral", "comunicação"],
+      "isRead": true,
+      "rating": 4
+    },
+    {
+      "id": "fb-r-8",
+      "from": "Técnico Paulo Lima",
+      "fromRole": "Técnico em Enfermagem",
+      "date": "2024-01-01T10:20:00Z",
+      "title": "Liderança inspiradora",
+      "content": "Ana é uma líder que inspira pelo exemplo. Sempre disposta a ajudar e ensinar, criando um ambiente de trabalho positivo e colaborativo.",
+      "tags": ["liderança", "inspiração", "ambiente positivo"],
+      "isRead": true,
+      "rating": 5
+    },
+    {
+      "id": "fb-r-9",
+      "from": "Paciente Maria Santos",
+      "fromRole": "Paciente",
+      "date": "2023-12-30T16:30:00Z",
+      "title": "Cuidado excepcional",
+      "content": "Durante minha internação, Ana foi além do esperado. Sempre atenciosa, explicava cada procedimento e me tranquilizava nos momentos difíceis. Profissional exemplar!",
+      "tags": ["cuidado excepcional", "empatia", "profissionalismo"],
+      "isRead": true,
+      "rating": 5
+    },
+    {
+      "id": "fb-r-10",
+      "from": "Dr. Carlos Mendes",
+      "fromRole": "Coordenador Médico",
+      "date": "2023-12-28T09:15:00Z",
+      "title": "Evolução profissional notável",
+      "content": "Tenho acompanhado o desenvolvimento de Ana e posso afirmar que sua evolução tem sido notável. Demonstra cada vez mais autonomia e segurança nas decisões clínicas.",
+      "tags": ["evolução", "autonomia", "desenvolvimento"],
+      "isRead": true,
+      "rating": 5
+    }
+  ],
+  "given": [
+    {
+      "id": "fb-g-1",
+      "to": "Técnico Paulo Lima",
+      "toRole": "Técnico em Enfermagem",
+      "date": "2024-01-13T11:15:00Z",
+      "title": "Melhoria na organização",
+      "content": "Paulo, notei que você tem se esforçado muito para manter os materiais organizados. Seria interessante criarmos juntos um checklist para padronizar o processo e facilitar para toda equipe.",
+      "tags": ["organização", "melhoria contínua", "trabalho em equipe"],
+      "type": "construtivo",
+      "rating": 4
+    },
+    {
+      "id": "fb-g-2",
+      "to": "Enfermeira Junior Luna",
+      "toRole": "Enfermeira",
+      "date": "2024-01-11T14:30:00Z",
+      "title": "Excelente adaptação",
+      "content": "Luna, estou impressionada com sua rápida adaptação aos protocolos da UTI. Sua atenção aos detalhes e iniciativa para esclarecer dúvidas demonstram grande potencial de crescimento.",
+      "tags": ["adaptação", "potencial", "proatividade"],
+      "type": "positivo",
+      "rating": 5
+    },
+    {
+      "id": "fb-g-3",
+      "to": "Dr. Amanda Costa",
+      "toRole": "Médica Residente",
+      "date": "2024-01-09T08:45:00Z",
+      "title": "Comunicação interprofissional",
+      "content": "Dr. Amanda, suas orientações têm sido muito claras e diretas, o que facilita muito nosso trabalho. Continuar nessa linha de comunicação eficaz fortalece ainda mais nossa parceria no cuidado aos pacientes.",
+      "tags": ["comunicação", "clareza", "parceria"],
+      "type": "positivo",
+      "rating": 5
+    },
+    {
+      "id": "fb-g-4",
+      "to": "Técnica Carla Mendes",
+      "toRole": "Técnica em Enfermagem",
+      "date": "2024-01-07T16:20:00Z",
+      "title": "Dedicação exemplar",
+      "content": "Carla, sua dedicação aos pacientes é inspiradora. Sempre atenta às necessidades e disposta a ir além. Continue assim, você faz a diferença no cuidado humanizado!",
+      "tags": ["dedicação", "cuidado humanizado", "inspiração"],
+      "type": "positivo",
+      "rating": 5
+    },
+    {
+      "id": "fb-g-5",
+      "to": "Enfermeiro Pedro Santos",
+      "toRole": "Enfermeiro",
+      "date": "2024-01-05T12:10:00Z",
+      "title": "Oportunidade de crescimento",
+      "content": "Pedro, você tem muito potencial para liderança. Sugiro que participe mais ativamente das discussões de caso e tome iniciativa em situações que exigem coordenação da equipe.",
+      "tags": ["liderança", "potencial", "desenvolvimento"],
+      "type": "construtivo",
+      "rating": 4
+    },
+    {
+      "id": "fb-g-6",
+      "to": "Fisioterapeuta João",
+      "toRole": "Fisioterapeuta",
+      "date": "2024-01-03T10:45:00Z",
+      "title": "Parceria excepcional",
+      "content": "João, nossa parceria no cuidado aos pacientes tem sido excepcional. Sua comunicação clara sobre o progresso dos pacientes facilita muito o planejamento do cuidado integral.",
+      "tags": ["parceria", "comunicação", "cuidado integral"],
+      "type": "positivo",
+      "rating": 5
+    },
+    {
+      "id": "fb-g-7",
+      "to": "Técnico Rafael Costa",
+      "toRole": "Técnico em Enfermagem",
+      "date": "2024-01-01T15:30:00Z",
+      "title": "Pontualidade e responsabilidade",
+      "content": "Rafael, sua pontualidade e responsabilidade são exemplares. Você sempre chega preparado e disposto a colaborar. Continue sendo esse profissional dedicado!",
+      "tags": ["pontualidade", "responsabilidade", "dedicação"],
+      "type": "positivo",
+      "rating": 4
+    },
+    {
+      "id": "fb-g-8",
+      "to": "Enfermeira Júlia Lima",
+      "toRole": "Enfermeira",
+      "date": "2023-12-29T13:15:00Z",
+      "title": "Inovação no cuidado",
+      "content": "Júlia, adorei sua sugestão de implementar o protocolo de mobilização precoce. Sua iniciativa em buscar melhorias no cuidado demonstra verdadeiro comprometimento com a excelência.",
+      "tags": ["inovação", "melhoria", "comprometimento"],
+      "type": "positivo",
+      "rating": 5
+    },
+    {
+      "id": "fb-g-9",
+      "to": "Técnica Fernanda Silva",
+      "toRole": "Técnica em Enfermagem",
+      "date": "2023-12-27T11:40:00Z",
+      "title": "Comunicação com familiares",
+      "content": "Fernanda, notei que você tem facilidade para se comunicar com os familiares dos pacientes. Seria ótimo se você pudesse compartilhar suas técnicas com a equipe em nossa próxima reunião.",
+      "tags": ["comunicação", "familiares", "compartilhamento"],
+      "type": "construtivo",
+      "rating": 4
+    },
+    {
+      "id": "fb-g-10",
+      "to": "Enfermeiro Lucas Oliveira",
+      "toRole": "Enfermeiro",
+      "date": "2023-12-25T09:20:00Z",
+      "title": "Conhecimento técnico impressionante",
+      "content": "Lucas, seu conhecimento técnico é impressionante. Sempre tem as respostas certas e ajuda a equipe a resolver situações complexas. Continue sendo essa referência para todos nós!",
+      "tags": ["conhecimento técnico", "referência", "resolução de problemas"],
+      "type": "positivo",
+      "rating": 5
+    }
+  ]
+}

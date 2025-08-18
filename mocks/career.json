@@ -1,0 +1,178 @@
+{
+  "plan": {
+    "currentLevel": "Enfermeira Pleno",
+    "currentLevelId": "enfermeira-pleno",
+    "nextLevel": "Enfermeira Sênior",
+    "nextLevelId": "enfermeira-senior",
+    "overallProgress": 60,
+    "totalExperience": 48,
+    "specializations": ["UTI", "Cardiologia"],
+    "levels": [
+      {
+        "id": "tecnico-enfermagem-i",
+        "name": "Técnico de Enfermagem I",
+        "description": "Nível inicial para técnicos de enfermagem",
+        "status": "completed",
+        "completedDate": "2020-03-15",
+        "requirements": [
+          "Curso técnico em enfermagem",
+          "Registro no COREN",
+          "Conhecimentos básicos de anatomia"
+        ],
+        "skills": [
+          "Sinais vitais",
+          "Medicação oral",
+          "Higiene e conforto",
+          "Curativos simples"
+        ],
+        "responsibilities": [
+          "Auxiliar enfermeiros nas atividades de cuidado",
+          "Realizar procedimentos básicos de enfermagem",
+          "Manter organização do ambiente"
+        ]
+      },
+      {
+        "id": "tecnico-enfermagem-ii",
+        "name": "Técnico de Enfermagem II",
+        "description": "Técnico com experiência e responsabilidades ampliadas",
+        "status": "completed",
+        "completedDate": "2021-08-20",
+        "requirements": [
+          "2+ anos de experiência",
+          "Curso de atualização em procedimentos",
+          "Avaliação de desempenho satisfatória"
+        ],
+        "skills": [
+          "Medicação parenteral",
+          "Curativos complexos",
+          "Coleta de exames",
+          "Orientação a pacientes"
+        ],
+        "responsibilities": [
+          "Supervisionar técnicos júnior",
+          "Realizar procedimentos de média complexidade",
+          "Participar de rounds médicos"
+        ]
+      },
+      {
+        "id": "enfermeira-junior",
+        "name": "Enfermeira Júnior",
+        "description": "Enfermeira recém-formada em início de carreira",
+        "status": "completed",
+        "completedDate": "2022-01-10",
+        "requirements": [
+          "Graduação em Enfermagem",
+          "Registro no COREN",
+          "Estágio supervisionado completo"
+        ],
+        "skills": [
+          "Sistematização da Assistência de Enfermagem (SAE)",
+          "Administração de medicamentos",
+          "Procedimentos invasivos básicos",
+          "Educação em saúde"
+        ],
+        "responsibilities": [
+          "Planejar e executar cuidados de enfermagem",
+          "Supervisionar equipe técnica",
+          "Documentar evolução de pacientes"
+        ]
+      },
+      {
+        "id": "enfermeira-pleno",
+        "name": "Enfermeira Pleno",
+        "description": "Enfermeira com experiência consolidada",
+        "status": "in-progress",
+        "progressPercent": 60,
+        "requirements": [
+          "3+ anos de experiência",
+          "Especialização ou pós-graduação",
+          "Liderança de projetos"
+        ],
+        "skills": [
+          "Gestão de equipe",
+          "Protocolos avançados",
+          "Cuidados críticos",
+          "Tomada de decisão clínica"
+        ],
+        "responsibilities": [
+          "Coordenar cuidados complexos",
+          "Mentorear enfermeiros júnior",
+          "Participar de comissões hospitalares",
+          "Implementar melhorias de processo"
+        ]
+      },
+      {
+        "id": "enfermeira-senior",
+        "name": "Enfermeira Sênior",
+        "description": "Enfermeira especialista com alta expertise",
+        "status": "next",
+        "requirements": [
+          "5+ anos de experiência",
+          "Especialização reconhecida",
+          "Publicações ou pesquisas",
+          "Liderança comprovada"
+        ],
+        "skills": [
+          "Expertise clínica avançada",
+          "Gestão de conflitos",
+          "Educação continuada",
+          "Auditoria de qualidade"
+        ],
+        "responsibilities": [
+          "Referência técnica da unidade",
+          "Desenvolver protocolos",
+          "Treinar equipe multidisciplinar",
+          "Participar de decisões estratégicas"
+        ]
+      },
+      {
+        "id": "especialista-enfermagem",
+        "name": "Especialista em Enfermagem",
+        "description": "Enfermeira com especialização avançada",
+        "status": "future",
+        "requirements": [
+          "7+ anos de experiência",
+          "Mestrado ou especialização avançada",
+          "Certificações internacionais",
+          "Histórico de inovação"
+        ],
+        "skills": [
+          "Pesquisa clínica",
+          "Consultoria especializada",
+          "Desenvolvimento de políticas",
+          "Mentoria avançada"
+        ],
+        "responsibilities": [
+          "Consultoria interna e externa",
+          "Desenvolvimento de novos protocolos",
+          "Pesquisa e inovação",
+          "Formação de especialistas"
+        ]
+      },
+      {
+        "id": "coordenadora-enfermagem",
+        "name": "Coordenadora de Enfermagem",
+        "description": "Posição de liderança e gestão",
+        "status": "future",
+        "requirements": [
+          "8+ anos de experiência",
+          "MBA ou especialização em gestão",
+          "Experiência em liderança",
+          "Conhecimento em gestão hospitalar"
+        ],
+        "skills": [
+          "Gestão estratégica",
+          "Orçamento e recursos",
+          "Desenvolvimento de equipes",
+          "Indicadores de qualidade"
+        ],
+        "responsibilities": [
+          "Gestão operacional da enfermagem",
+          "Planejamento estratégico",
+          "Desenvolvimento de talentos",
+          "Interface com direção médica"
+        ]
+      }
+    ]
+  }
+}

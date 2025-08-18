@@ -1,0 +1,224 @@
+{
+  "posts": [
+    {
+      "id": "comm-1",
+      "category": "Direção Médica",
+      "title": "Reunião Geral - Sexta-feira",
+      "content": "Reunião geral de equipe marcada para sexta-feira às 16h no auditório principal. Presença obrigatória para todos os profissionais. Serão discutidos os novos protocolos de atendimento e metas do próximo trimestre.",
+      "date": "2024-01-15T14:30:00Z",
+      "icon": "📢",
+      "highlight": true,
+      "author": "Dr. Roberto Silva",
+      "authorRole": "Diretor Médico"
+    },
+    {
+      "id": "comm-2",
+      "category": "RH",
+      "title": "Parabéns aos Destaques do Mês",
+      "content": "Parabenizamos Ana Silva, Dr. Carlos Lima e Enfermeira Luna pelos excelentes feedbacks recebidos este mês! Vocês são exemplos de dedicação e profissionalismo para toda equipe.",
+      "date": "2024-01-14T09:15:00Z",
+      "icon": "🎉",
+      "highlight": false,
+      "author": "Ana Costa",
+      "authorRole": "Coordenadora de RH"
+    },
+    {
+      "id": "comm-3",
+      "category": "Coordenação",
+      "title": "Novos Treinamentos Disponíveis",
+      "content": "Foram adicionados 5 novos módulos de treinamento: Protocolos de Sepse 2024, Comunicação Assertiva, Liderança em Enfermagem, Cuidados Paliativos e Farmacologia em UTI. Não esqueçam de completar para ganhar pontos!",
+      "date": "2024-01-13T16:45:00Z",
+      "icon": "📚",
+      "highlight": false,
+      "author": "Enf. Supervisora Maria",
+      "authorRole": "Coordenadora de Enfermagem"
+    },
+    {
+      "id": "comm-4",
+      "category": "TI",
+      "title": "Manutenção do Sistema",
+      "content": "Manutenção programada do sistema Humanus no sábado das 2h às 6h. Durante este período, o acesso pode ficar intermitente. Pedimos compreensão e que salvem seus dados antes deste horário.",
+      "date": "2024-01-12T11:20:00Z",
+      "icon": "💻",
+      "highlight": true,
+      "author": "João Silva",
+      "authorRole": "Coordenador de TI"
+    },
+    {
+      "id": "comm-5",
+      "category": "Qualidade",
+      "title": "Melhoria nos Índices de Satisfação",
+      "content": "Nossos índices de satisfação do paciente aumentaram 15% no último trimestre! A nota média passou de 8.2 para 9.4. Parabéns a toda equipe pelo excelente trabalho e dedicação ao cuidado humanizado.",
+      "date": "2024-01-11T08:30:00Z",
+      "icon": "⭐",
+      "highlight": false,
+      "author": "Dra. Patricia Lima",
+      "authorRole": "Coordenadora de Qualidade"
+    },
+    {
+      "id": "comm-6",
+      "category": "Segurança",
+      "title": "Novo Protocolo de Segurança",
+      "content": "Implementação do novo protocolo de segurança para medicamentos de alto risco. Treinamento obrigatório até o final do mês. O protocolo inclui dupla checagem e identificação por código de barras.",
+      "date": "2024-01-10T15:10:00Z",
+      "icon": "🛡️",
+      "highlight": true,
+      "author": "Farmacêutica Clara",
+      "authorRole": "Coordenadora de Segurança"
+    },
+    {
+      "id": "comm-7",
+      "category": "Eventos",
+      "title": "Festa de Confraternização",
+      "content": "Festa de confraternização da equipe marcada para o dia 25/01 às 19h no salão de eventos do hospital. Haverá jantar, música ao vivo e premiação dos destaques do ano. Confirmem presença até dia 20!",
+      "date": "2024-01-09T13:45:00Z",
+      "icon": "🎊",
+      "highlight": false,
+      "author": "Comissão de Eventos",
+      "authorRole": "Organização"
+    },
+    {
+      "id": "comm-8",
+      "category": "Direção",
+      "title": "Resultados do Trimestre",
+      "content": "Apresentação dos resultados do último trimestre disponível no portal interno. Destaque para redução de 20% no tempo médio de internação e aumento de 25% na satisfação dos pacientes. Parabéns equipe!",
+      "date": "2024-01-08T10:00:00Z",
+      "icon": "📈",
+      "highlight": false,
+      "author": "Direção Geral",
+      "authorRole": "Administração"
+    },
+    {
+      "id": "comm-9",
+      "category": "RH",
+      "title": "Programa de Reconhecimento",
+      "content": "Lançamento do novo programa de reconhecimento 'Estrelas da Saúde'. Indiquem colegas que se destacaram este mês nas categorias: Excelência Técnica, Trabalho em Equipe, Inovação e Cuidado Humanizado.",
+      "date": "2024-01-07T14:20:00Z",
+      "icon": "🏆",
+      "highlight": false,
+      "author": "Ana Costa",
+      "authorRole": "Coordenadora de RH"
+    },
+    {
+      "id": "comm-10",
+      "category": "Coordenação",
+      "title": "Atualização de Protocolos",
+      "content": "Novos protocolos de atendimento em emergência foram aprovados pelo comitê médico. As principais mudanças incluem tempos de resposta reduzidos e nova classificação de risco. Consultem o manual atualizado na intranet.",
+      "date": "2024-01-06T11:30:00Z",
+      "icon": "📋",
+      "highlight": false,
+      "author": "Dr. Carlos Mendes",
+      "authorRole": "Coordenador Médico"
+    },
+    {
+      "id": "comm-11",
+      "category": "TI",
+      "title": "Atualização de Senhas Obrigatória",
+      "content": "IMPORTANTE: Todas as senhas devem ser atualizadas até o final desta semana por questões de segurança. Utilizem o gerador de senhas seguras disponível no portal. Senhas devem ter no mínimo 8 caracteres.",
+      "date": "2024-01-05T09:45:00Z",
+      "icon": "🔐",
+      "highlight": true,
+      "author": "João Silva",
+      "authorRole": "Coordenador de TI"
+    },
+    {
+      "id": "comm-12",
+      "category": "Qualidade",
+      "title": "Auditoria Interna Programada",
+      "content": "Auditoria interna de qualidade será realizada na próxima semana (15-19/01). Mantenham toda documentação organizada e atualizada. Foco especial em prontuários eletrônicos e protocolos de medicação.",
+      "date": "2024-01-04T16:15:00Z",
+      "icon": "📊",
+      "highlight": true,
+      "author": "Dra. Patricia Lima",
+      "authorRole": "Coordenadora de Qualidade"
+    },
+    {
+      "id": "comm-13",
+      "category": "Eventos",
+      "title": "Formatura de Residentes",
+      "content": "Cerimônia de formatura dos residentes será no dia 30/01 às 18h no auditório principal. Toda equipe está convidada para prestigiar nossos 12 novos colegas que concluíram a residência em diferentes especialidades!",
+      "date": "2024-01-03T12:00:00Z",
+      "icon": "🎓",
+      "highlight": false,
+      "author": "Comissão de Eventos",
+      "authorRole": "Organização"
+    },
+    {
+      "id": "comm-14",
+      "category": "Segurança",
+      "title": "Simulado de Emergência",
+      "content": "ATENÇÃO: Simulado de evacuação será realizado amanhã (05/01) às 10h. Todos devem participar seguindo os procedimentos estabelecidos. O exercício durará aproximadamente 30 minutos.",
+      "date": "2024-01-02T15:30:00Z",
+      "icon": "🚨",
+      "highlight": true,
+      "author": "Equipe de Segurança",
+      "authorRole": "Coordenação de Segurança"
+    },
+    {
+      "id": "comm-15",
+      "category": "Direção",
+      "title": "Metas Estratégicas 2024",
+      "content": "Apresentação das metas estratégicas para 2024 disponível no portal. Principais focos: redução de 30% no tempo de atendimento, implementação de 5 novos protocolos e aumento de 20% na satisfação dos colaboradores.",
+      "date": "2024-01-01T08:00:00Z",
+      "icon": "🎯",
+      "highlight": false,
+      "author": "Direção Geral",
+      "authorRole": "Administração"
+    },
+    {
+      "id": "comm-16",
+      "category": "RH",
+      "title": "Oportunidades Internas",
+      "content": "Abertas vagas internas: 2 vagas para Enfermeiro Sênior na UTI Neurológica, 1 vaga para Técnico Especialista em Cardiologia e 1 vaga para Coordenador de Plantão. Inscrições até 20/01 pelo portal RH.",
+      "date": "2023-12-30T10:45:00Z",
+      "icon": "💼",
+      "highlight": false,
+      "author": "Ana Costa",
+      "authorRole": "Coordenadora de RH"
+    },
+    {
+      "id": "comm-17",
+      "category": "TI",
+      "title": "Lançamento do App Mobile",
+      "content": "Lançamento oficial do aplicativo móvel Humanus! Acesso rápido a protocolos, comunicações e treinamentos. Download disponível na App Store e Google Play. Código QR disponível na recepção.",
+      "date": "2023-12-29T14:20:00Z",
+      "icon": "📱",
+      "highlight": false,
+      "author": "João Silva",
+      "authorRole": "Coordenador de TI"
+    },
+    {
+      "id": "comm-18",
+      "category": "Qualidade",
+      "title": "Certificação ISO Renovada",
+      "content": "CONQUISTA! Hospital recebeu renovação da certificação ISO 9001:2015 com nota máxima! Parabéns a todos pela dedicação em manter nossos padrões de qualidade e excelência no atendimento.",
+      "date": "2023-12-28T11:10:00Z",
+      "icon": "🏅",
+      "highlight": false,
+      "author": "Dra. Patricia Lima",
+      "authorRole": "Coordenadora de Qualidade"
+    },
+    {
+      "id": "comm-19",
+      "category": "Eventos",
+      "title": "Workshop de Inovação em Saúde",
+      "content": "Workshop 'Inovação e Tecnologia em Saúde' será realizado no dia 15/02. Palestrantes renomados abordarão IA na medicina, telemedicina e prontuário eletrônico. Inscrições limitadas!",
+      "date": "2023-12-27T16:30:00Z",
+      "icon": "💡",
+      "highlight": false,
+      "author": "Comissão Científica",
+      "authorRole": "Desenvolvimento"
+    },
+    {
+      "id": "comm-20",
+      "category": "Segurança",
+      "title": "Campanha de Prevenção",
+      "content": "Lançamento da campanha 'Mãos Limpas, Vidas Salvas'. Meta: reduzir infecções hospitalares em 40%. Novos dispensers de álcool gel instalados e treinamento reforçado sobre higienização.",
+      "date": "2023-12-26T13:15:00Z",
+      "icon": "🧼",
+      "highlight": false,
+      "author": "Comissão de Controle de Infecção",
+      "authorRole": "Prevenção"
+    }
+  ]
+}
