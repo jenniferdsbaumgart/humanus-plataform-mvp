@@ -26,10 +26,10 @@ Special thanks to the mentors and organisers for their guidance and support.
 
 ![Dashboard](https://i.ibb.co/FLs3vjVB/humanus1.png)
 ![Feedbacks](https://i.ibb.co/C57mYw4z/humanus2.png)
-![Feedbacks](https://i.ibb.co/PzFN1xG3/humanus3.png)
-![Feedbacks](https://i.ibb.co/C31gT3Cy/humanus4.png)
-![Feedbacks](https://i.ibb.co/twLfXtxm/humanus5.png)
-![Feedbacks](https://i.ibb.co/ccCx4w7H/humanus6.png)
+![Tarining](https://i.ibb.co/PzFN1xG3/humanus3.png)
+![TrainingQuiz](https://i.ibb.co/C31gT3Cy/humanus4.png)
+![Rewards](https://i.ibb.co/twLfXtxm/humanus5.png)
+![MoodTracker](https://i.ibb.co/ccCx4w7H/humanus6.png)
 
 ## License
 
