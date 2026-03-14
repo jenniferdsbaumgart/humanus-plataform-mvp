@@ -79,3 +79,9 @@
   --chart-4: 339 82% 52%;
   --chart-5: 271 81% 56%;
 }
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
