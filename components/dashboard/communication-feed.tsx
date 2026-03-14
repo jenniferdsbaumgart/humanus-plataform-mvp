@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { CommunicationCard } from '@/components/communications/communication-card';
 import { MessageSquare, Plus, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface Communication {
   id: string;
@@ -20,6 +21,7 @@ interface Communication {
 }
 
 export function CommunicationFeed() {
+  const t = useTranslations('Dashboard.CommunicationFeed');
   const [communications, setCommunications] = useState<Communication[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -72,22 +74,22 @@ export function CommunicationFeed() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <MessageSquare className="h-5 w-5 text-brand-medium" />
-              Comunicações Recentes
+              {t('title')}
             </CardTitle>
             <CardDescription>
-              Últimas novidades do mural de comunicação
+              {t('subtitle')}
             </CardDescription>
           </div>
           <div className="flex gap-2">
             <Link href="/communications/new">
               <Button size="sm" className="bg-brand-accent hover:bg-brand-accent/90">
                 <Plus className="h-4 w-4 mr-1" />
-                Criar
+                {t('create')}
               </Button>
             </Link>
             <Link href="/communications">
               <Button size="sm" variant="outline">
-                Ver todas
+                {t('seeAll')}
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </Link>
@@ -98,11 +100,11 @@ export function CommunicationFeed() {
         {communications.length === 0 ? (
           <div className="text-center py-8">
             <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground mb-4">Nenhuma comunicação ainda.</p>
+            <p className="text-muted-foreground mb-4">{t('noCommunications')}</p>
             <Link href="/communications/new">
               <Button className="bg-brand-primary hover:bg-brand-primary/90">
                 <Plus className="h-4 w-4 mr-2" />
-                Criar primeira postagem
+                {t('createFirst')}
               </Button>
             </Link>
           </div>

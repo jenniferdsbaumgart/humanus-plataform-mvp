@@ -29,6 +29,8 @@ const categoryColors = {
   'Geral': 'border-l-gray-500 bg-gray-50'
 };
 
+import { useTranslations } from 'next-intl';
+
 export function CommunicationCard({
   category,
   title,
@@ -40,6 +42,23 @@ export function CommunicationCard({
   authorRole,
   compact = false
 }: CommunicationCardProps) {
+  const tCat = useTranslations('Communications.Categories');
+  
+  const getCategoryLabel = (category: string) => {
+    switch (category) {
+      case 'Direção Médica': return tCat('medical');
+      case 'RH': return tCat('hr');
+      case 'Coordenação': return tCat('coordination');
+      case 'TI': return tCat('it');
+      case 'Qualidade': return tCat('quality');
+      case 'Segurança': return tCat('safety');
+      case 'Eventos': return tCat('events');
+      case 'Direção': return tCat('direction');
+      case 'Geral': return tCat('general');
+      default: return category;
+    }
+  };
+
   const categoryStyle = categoryColors[category as keyof typeof categoryColors] || categoryColors['Geral'];
   
   return (
@@ -48,7 +67,7 @@ export function CommunicationCard({
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
             <Badge variant="secondary" className="text-xs font-medium">
-              {category}
+              {getCategoryLabel(category)}
             </Badge>
           </div>
           <span className="text-xs text-muted-foreground">

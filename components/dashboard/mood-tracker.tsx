@@ -18,7 +18,6 @@ interface MoodRecord {
 }
 
 const moodEmojis = ['😔', '😕', '😐', '😊', '😄'];
-const moodLabels = ['Muito baixo', 'Baixo', 'Neutro', 'Bom', 'Excelente'];
 
 const availableTags = [
   'produtivo', 'cansado', 'estresse', 'motivado', 'plantão',
@@ -26,7 +25,18 @@ const availableTags = [
   'aprendizado', 'desafio', 'equipe'
 ];
 
+import { useTranslations } from 'next-intl';
+
 export function MoodTracker() {
+  const t = useTranslations('Dashboard.MoodTracker');
+  const moodLabels = [
+    t('labels.1'),
+    t('labels.2'),
+    t('labels.3'),
+    t('labels.4'),
+    t('labels.5')
+  ];
+
   const [moods, setMoods] = useState<MoodRecord[]>([]);
   const [currentMood, setCurrentMood] = useState<number>(3);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -65,8 +75,8 @@ export function MoodTracker() {
 
       if (response.ok) {
         toast({
-          title: "Mood registrado!",
-          description: "Seu humor foi registrado com sucesso.",
+          title: t('successTitle'),
+          description: t('successDesc'),
         });
         fetchMoods();
         setIsDialogOpen(false);
@@ -76,8 +86,8 @@ export function MoodTracker() {
       }
     } catch (error) {
       toast({
-        title: "Erro",
-        description: "Não foi possível registrar seu humor.",
+        title: t('errorTitle'),
+        description: t('errorDesc'),
         variant: "destructive",
       });
     }
@@ -115,31 +125,31 @@ export function MoodTracker() {
           <div>
             <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
               <CalendarDays className="h-5 w-5 text-brand-medium" />
-              Mood Tracker
+              {t('title')}
             </CardTitle>
             <CardDescription className="text-xs sm:text-sm">
-              Como você está se sentindo hoje?
+              {t('subtitle')}
             </CardDescription>
           </div>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button size="sm" className="bg-brand-accent hover:bg-brand-accent/90">
                 <Plus className="h-4 w-4 mr-1" />
-                Registrar
+                {t('register')}
               </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <div className="pt-6">
-                  <DialogTitle>Como você está se sentindo hoje?</DialogTitle>
+                  <DialogTitle>{t('registerTitle')}</DialogTitle>
                   <DialogDescription>
-                    Registre seu humor e sentimentos para acompanhar seu bem-estar.
+                    {t('registerDesc')}
                   </DialogDescription>
                 </div>
               </DialogHeader>
               <div className="space-y-6">
                 <div>
-                  <label className="text-sm font-medium mb-3 block">Selecione seu humor:</label>
+                  <label className="text-sm font-medium mb-3 block">{t('selectMood')}</label>
                   <div className="flex flex-wrap gap-2 overflow-x-auto">
                     {moodEmojis.map((emoji, index) => (
                       <Button
@@ -158,7 +168,7 @@ export function MoodTracker() {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium mb-3 block">Tags (opcional):</label>
+                  <label className="text-sm font-medium mb-3 block">{t('tagsOptional')}</label>
                   <div className="flex flex-wrap gap-2 items-center justify-center overflow-x-auto">
                     {availableTags.map((tag) => (
                       <Badge
@@ -176,9 +186,9 @@ export function MoodTracker() {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium mb-3 block">Nota (opcional):</label>
+                  <label className="text-sm font-medium mb-3 block">{t('noteOptional')}</label>
                   <Textarea
-                    placeholder="Conte um pouco mais sobre como foi seu dia..."
+                    placeholder={t('notePlaceholder')}
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
                     className="min-h-[100px] bg-neutral-00"
@@ -186,7 +196,7 @@ export function MoodTracker() {
                 </div>
 
                 <Button onClick={submitMood} className="w-full bg-brand-primary hover:bg-brand-primary/90">
-                  Registrar Mood
+                  {t('registerButton')}
                 </Button>
               </div>
             </DialogContent>
@@ -198,7 +208,7 @@ export function MoodTracker() {
           <div className="text-center mb-4">
             <div className="text-4xl mb-2">{moodEmojis[todayMood.mood - 1]}</div>
             <p className="text-sm text-muted-foreground">
-              Humor de hoje: {moodLabels[todayMood.mood - 1]}
+              {t('todayMood')} {moodLabels[todayMood.mood - 1]}
             </p>
             {todayMood.tags.length > 0 && (
               <div className="flex flex-wrap justify-center gap-1 mt-2">
@@ -212,13 +222,13 @@ export function MoodTracker() {
           </div>
         ) : (
           <div className="text-center mb-4 text-muted-foreground">
-            <p>Ainda não registrou seu humor hoje</p>
+            <p>{t('noMoodToday')}</p>
           </div>
         )}
 
         {recentMoods.length > 0 && (
           <div>
-            <p className="text-sm font-medium mb-2">Últimos 7 dias:</p>
+            <p className="text-sm font-medium mb-2">{t('last7Days')}</p>
             <div className="flex gap-2 overflow-x-auto">
               {recentMoods.map((mood) => (
                 <div key={mood.id} className="flex-shrink-0 text-center">

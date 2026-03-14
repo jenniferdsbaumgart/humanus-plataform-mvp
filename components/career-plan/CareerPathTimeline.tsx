@@ -16,49 +16,59 @@ const statusConfig = {
     icon: CheckCircle,
     color: 'text-green-600',
     bgColor: 'bg-green-100',
-    borderColor: 'border-green-200',
-    label: 'Completado'
+    borderColor: 'border-green-200'
   },
   'in-progress': {
     icon: Clock,
     color: 'text-blue-600',
     bgColor: 'bg-blue-100',
-    borderColor: 'border-blue-200',
-    label: 'Em progresso'
+    borderColor: 'border-blue-200'
   },
   next: {
     icon: Target,
     color: 'text-orange-600',
     bgColor: 'bg-orange-100',
-    borderColor: 'border-orange-200',
-    label: 'Próximo objetivo'
+    borderColor: 'border-orange-200'
   },
   future: {
     icon: Hourglass,
     color: 'text-gray-500',
     bgColor: 'bg-gray-100',
-    borderColor: 'border-gray-200',
-    label: 'Meta futura'
+    borderColor: 'border-gray-200'
   }
 };
 
+import { useTranslations } from 'next-intl';
+
 export function CareerPathTimeline({ levels }: CareerPathTimelineProps) {
+  const t = useTranslations('CareerPlan.CareerPathTimeline');
+  
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'completed': return t('completed');
+      case 'in-progress': return t('inProgress');
+      case 'next': return t('nextObjective');
+      case 'future': return t('futureGoal');
+      default: return status;
+    }
+  };
   return (
   <Card className="rounded-xl w-full max-w-[490px] sm:max-w-full mx-auto">
       <CardHeader className="pb-2 sm:pb-4">
         <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl">
           <Target className="h-6 w-6 sm:h-7 sm:w-7 text-brand-primary" />
-          Trilha de Carreira em Enfermagem
+          {t('timelineTitle')}
         </CardTitle>
         <CardDescription className="text-sm sm:text-lg">
-          Acompanhe sua evolução profissional e os próximos passos da sua carreira
+          {t('timelineSubtitle')}
         </CardDescription>
       </CardHeader>
       <CardContent className="pt-0 sm:pt-0">
         <div className="space-y-4 sm:space-y-6">
           {levels.map((level, index) => {
-            const config = statusConfig[level.status];
+            const config = statusConfig[level.status as keyof typeof statusConfig];
             const Icon = config.icon;
+            const label = getStatusLabel(level.status);
             return (
               <div
                 key={level.id}
@@ -70,25 +80,25 @@ export function CareerPathTimeline({ levels }: CareerPathTimelineProps) {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1 sm:gap-2 mb-0.5 sm:mb-1">
                     <h3 className="font-semibold text-md sm:text-xl">{level.name}</h3>
-                    <Badge variant="outline" className={`text-[10px] sm:text-xs px-1.5 py-0.5 ${config.color}`}>{config.label}</Badge>
+                    <Badge variant="outline" className={`text-[10px] sm:text-xs px-1.5 py-0.5 ${config.color}`}>{label}</Badge>
                   </div>
                   <p className="text-muted-foreground text-[13px] sm:text-sm mb-1 sm:mb-2">{level.description}</p>
                   <div className="flex flex-wrap items-center gap-1 sm:gap-4 text-[12px] sm:text-lg text-muted-foreground">
                     {level.completedDate && (
-                      <span>Completado em {new Date(level.completedDate).toLocaleDateString('pt-BR')}</span>
+                      <span>{t('completedOn')} {new Date(level.completedDate).toLocaleDateString('pt-BR')}</span>
                     )}
                     {level.progressPercent !== undefined && (
-                      <span>{level.progressPercent}% concluído</span>
+                      <span>{t('percentCompleted', { percent: level.progressPercent })}</span>
                     )}
-                    <span>{level.requirements.length} req.</span>
-                    <span>{level.skills.length} hab.</span>
+                    <span>{t('reqs', { count: level.requirements.length })}</span>
+                    <span>{t('skillsCount', { count: level.skills.length })}</span>
                   </div>
                 </div>
                 <Sheet>
                   <SheetTrigger asChild>
                     <Button variant="outline" size="sm" className="text-[10px] sm:text-xs px-2 sm:px-4">
                       <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                      Detalhes
+                      {t('details')}
                     </Button>
                   </SheetTrigger>
                   <SheetContent className="w-full max-w-full sm:w-[540px] overflow-y-auto">
@@ -103,20 +113,20 @@ export function CareerPathTimeline({ levels }: CareerPathTimelineProps) {
                     </SheetHeader>
                     <div className="space-y-2 sm:space-y-6 mt-2 sm:mt-6">
                       <div className="flex items-center gap-1 sm:gap-2">
-                        <Badge variant="secondary" className={`text-[10px] sm:text-xs ${config.color}`}>{config.label}</Badge>
+                        <Badge variant="secondary" className={`text-[10px] sm:text-xs ${config.color}`}>{label}</Badge>
                         {level.completedDate && (
                           <span className="text-[10px] sm:text-sm text-muted-foreground">
-                            Completado em {new Date(level.completedDate).toLocaleDateString('pt-BR')}
+                            {t('completedOn')} {new Date(level.completedDate).toLocaleDateString('pt-BR')}
                           </span>
                         )}
                         {level.progressPercent !== undefined && (
                           <span className="text-[10px] sm:text-sm text-muted-foreground">
-                            {level.progressPercent}% concluído
+                            {t('percentCompleted', { percent: level.progressPercent })}
                           </span>
                         )}
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-1 sm:mb-3 text-xs sm:text-base">Requisitos</h4>
+                        <h4 className="font-semibold mb-1 sm:mb-3 text-xs sm:text-base">{t('requirements')}</h4>
                         <div className="space-y-1 sm:space-y-2">
                           {level.requirements.map((req, index) => (
                             <div key={index} className="flex items-center gap-1 sm:gap-2">
@@ -127,7 +137,7 @@ export function CareerPathTimeline({ levels }: CareerPathTimelineProps) {
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-1 sm:mb-3 text-xs sm:text-base">Habilidades Principais</h4>
+                        <h4 className="font-semibold mb-1 sm:mb-3 text-xs sm:text-base">{t('coreSkills')}</h4>
                         <div className="flex flex-wrap gap-1 sm:gap-2">
                           {level.skills.map((skill, index) => (
                             <Badge key={index} variant="outline" className="text-[10px] sm:text-xs px-2 py-0.5">{skill}</Badge>
@@ -135,7 +145,7 @@ export function CareerPathTimeline({ levels }: CareerPathTimelineProps) {
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-1 sm:mb-3 text-xs sm:text-base">Responsabilidades</h4>
+                        <h4 className="font-semibold mb-1 sm:mb-3 text-xs sm:text-base">{t('responsibilities')}</h4>
                         <div className="space-y-1 sm:space-y-2">
                           {level.responsibilities.map((resp, index) => (
                             <div key={index} className="flex items-start gap-1 sm:gap-2">

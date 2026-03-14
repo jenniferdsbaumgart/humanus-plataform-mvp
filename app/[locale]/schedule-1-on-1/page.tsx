@@ -17,22 +17,23 @@ import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
-const scheduleSchema = z.object({
-  supervisor: z.string().min(1, 'Selecione um supervisor'),
+const getScheduleSchema = (t: any) => z.object({
+  supervisor: z.string().min(1, t('valSupervisor')),
   type: z.enum(['career-planning', 'feedback', 'development', 'performance'], {
-    required_error: 'Selecione o tipo de reunião'
+    required_error: t('valType')
   }),
-  preferredDate: z.string().min(1, 'Selecione uma data preferencial'),
-  preferredTime: z.string().min(1, 'Selecione um horário preferencial'),
+  preferredDate: z.string().min(1, t('valDate')),
+  preferredTime: z.string().min(1, t('valTime')),
   duration: z.enum(['30', '45', '60'], {
-    required_error: 'Selecione a duração'
+    required_error: t('valDuration')
   }),
-  agenda: z.string().min(10, 'Descreva a agenda com pelo menos 10 caracteres'),
+  agenda: z.string().min(10, t('valAgenda')),
   notes: z.string().optional()
 });
 
-type ScheduleForm = z.infer<typeof scheduleSchema>;
+type ScheduleForm = z.infer<ReturnType<typeof getScheduleSchema>>;
 
 const supervisors = [
   {
@@ -89,6 +90,10 @@ const meetingTypes = [
 ];
 
 export default function Schedule1on1Page() {
+  const t = useTranslations('Schedule');
+  const tSup = useTranslations('Schedule.Supervisors');
+  const tTypes = useTranslations('Schedule.Types');
+  
   const [loading, setLoading] = useState(false);
   const [selectedSupervisor, setSelectedSupervisor] = useState<string>('');
   const { toast } = useToast();
@@ -102,7 +107,7 @@ export default function Schedule1on1Page() {
     reset,
     formState: { errors }
   } = useForm<ScheduleForm>({
-    resolver: zodResolver(scheduleSchema),
+    resolver: zodResolver(getScheduleSchema(t)),
     defaultValues: {
       duration: '60'
     }
@@ -111,6 +116,25 @@ export default function Schedule1on1Page() {
   const selectedType = watch('type');
   const supervisor = supervisors.find(s => s.id === selectedSupervisor);
 
+  const getSupervisorI18n = (id: string, defItem: any) => {
+    switch (id) {
+      case 'maria-santos': return { ...defItem, role: tSup('sup1Role'), department: tSup('sup1Dept'), availability: tSup('sup1Avail')};
+      case 'roberto-silva': return { ...defItem, role: tSup('sup2Role'), department: tSup('sup2Dept'), availability: tSup('sup2Avail')};
+      case 'ana-costa': return { ...defItem, role: tSup('sup3Role'), department: tSup('sup3Dept'), availability: tSup('sup3Avail')};
+      default: return defItem;
+    }
+  }
+
+  const getTypeI18n = (id: string, defItem: any) => {
+    switch (id) {
+      case 'career-planning': return { ...defItem, label: tTypes('t1Label'), description: tTypes('t1Desc') };
+      case 'feedback': return { ...defItem, label: tTypes('t2Label'), description: tTypes('t2Desc') };
+      case 'development': return { ...defItem, label: tTypes('t3Label'), description: tTypes('t3Desc') };
+      case 'performance': return { ...defItem, label: tTypes('t4Label'), description: tTypes('t4Desc') };
+      default: return defItem;
+    }
+  }
+
   const onSubmit = async (data: ScheduleForm) => {
     setLoading(true);
     try {
@@ -118,16 +142,16 @@ export default function Schedule1on1Page() {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       toast({
-        title: "Solicitação enviada!",
-        description: "Sua solicitação de reunião 1:1 foi enviada. Você receberá uma confirmação em breve.",
+        title: t('successTitle'),
+        description: t('successDesc'),
       });
       
       reset();
       router.push('/career-plan');
     } catch (error) {
       toast({
-        title: "Erro",
-        description: "Não foi possível enviar a solicitação. Tente novamente.",
+        title: t('errorTitle'),
+        description: t('errorDesc'),
         variant: "destructive",
       });
     } finally {
@@ -145,16 +169,16 @@ export default function Schedule1on1Page() {
             <Link href="/career-plan" className="w-full sm:w-auto">
               <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Voltar
+                {t('backBtn')}
               </Button>
             </Link>
             <div className="space-y-1 sm:space-y-2">
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight flex items-center gap-2 sm:gap-3">
                 <Calendar className="h-7 w-7 sm:h-8 sm:w-8 text-brand-primary" />
-                Agendar Nova Sessão 1:1
+                {t('title')}
               </h1>
               <p className="text-xs sm:text-base text-muted-foreground">
-                Solicite uma reunião individual para desenvolvimento profissional
+                {t('subtitle')}
               </p>
             </div>
           </div>
@@ -164,41 +188,44 @@ export default function Schedule1on1Page() {
             <div className="lg:col-span-2">
               <Card className="rounded-2xl">
                 <CardHeader>
-                  <CardTitle className="text-base sm:text-lg">Detalhes da Reunião</CardTitle>
+                  <CardTitle className="text-base sm:text-lg">{t('cardDetailsTitle')}</CardTitle>
                   <CardDescription className="text-xs sm:text-sm">
-                    Preencha as informações para solicitar sua sessão 1:1
+                    {t('cardDetailsDesc')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                     {/* Seleção de Supervisor */}
                     <div className="space-y-1 sm:space-y-2">
-                      <label className="text-xs sm:text-sm font-medium">Supervisor</label>
+                      <label className="text-xs sm:text-sm font-medium">{t('supervisorLabel')}</label>
                       <Select onValueChange={(value) => {
                         setValue('supervisor', value);
                         setSelectedSupervisor(value);
                       }}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Selecione um supervisor" />
+                          <SelectValue placeholder={t('supervisorPlaceholder')} />
                         </SelectTrigger>
                         <SelectContent>
-                          {supervisors.map((supervisor) => (
-                            <SelectItem key={supervisor.id} value={supervisor.id}>
-                              <div className="flex items-center gap-2">
-                                <Image
-                                  src={supervisor.avatar}
-                                  alt={supervisor.name}
-                                  width={32}
-                                  height={32}
-                                  className="w-8 h-8 rounded-full object-cover"
-                                />
-                                <div>
-                                  <div className="font-medium">{supervisor.name}</div>
-                                  <div className="text-xs text-muted-foreground">{supervisor.role}</div>
+                          {supervisors.map((s) => {
+                            const supInfo = getSupervisorI18n(s.id, s);
+                            return (
+                              <SelectItem key={s.id} value={s.id}>
+                                <div className="flex items-center gap-2">
+                                  <Image
+                                    src={supInfo.avatar}
+                                    alt={supInfo.name}
+                                    width={32}
+                                    height={32}
+                                    className="w-8 h-8 rounded-full object-cover"
+                                  />
+                                  <div>
+                                    <div className="font-medium">{supInfo.name}</div>
+                                    <div className="text-xs text-muted-foreground">{supInfo.role}</div>
+                                  </div>
                                 </div>
-                              </div>
-                            </SelectItem>
-                          ))}
+                              </SelectItem>
+                            );
+                          })}
                         </SelectContent>
                       </Select>
                       {errors.supervisor && (
@@ -208,20 +235,23 @@ export default function Schedule1on1Page() {
 
                     {/* Tipo de Reunião */}
                     <div className="space-y-1 sm:space-y-2">
-                      <label className="text-xs sm:text-sm font-medium">Tipo de Reunião</label>
+                      <label className="text-xs sm:text-sm font-medium">{t('typeLabel')}</label>
                       <Select onValueChange={(value: any) => setValue('type', value)}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Selecione o tipo de reunião" />
+                          <SelectValue placeholder={t('typePlaceholder')} />
                         </SelectTrigger>
                         <SelectContent>
-                          {meetingTypes.map((type) => (
-                            <SelectItem key={type.value} value={type.value}>
-                              <div>
-                                <div className="font-medium">{type.label}</div>
-                                <div className="text-xs text-muted-foreground">{type.description}</div>
-                              </div>
-                            </SelectItem>
-                          ))}
+                          {meetingTypes.map((tItem) => {
+                            const mtInfo = getTypeI18n(tItem.value, tItem);
+                            return (
+                              <SelectItem key={tItem.value} value={tItem.value}>
+                                <div>
+                                  <div className="font-medium">{mtInfo.label}</div>
+                                  <div className="text-xs text-muted-foreground">{mtInfo.description}</div>
+                                </div>
+                              </SelectItem>
+                            );
+                          })}
                         </SelectContent>
                       </Select>
                       {errors.type && (
@@ -232,7 +262,7 @@ export default function Schedule1on1Page() {
                     {/* Data e Hora */}
                     <div className="grid gap-2 sm:gap-4 grid-cols-1 md:grid-cols-2">
                       <div className="space-y-2">
-                        <label className="text-xs sm:text-sm font-medium">Data Preferencial</label>
+                        <label className="text-xs sm:text-sm font-medium">{t('dateLabel')}</label>
                         <Input
                           type="date"
                           {...register('preferredDate')}
@@ -243,7 +273,7 @@ export default function Schedule1on1Page() {
                         )}
                       </div>
                       <div className="space-y-2">
-                        <label className="text-xs sm:text-sm font-medium">Horário Preferencial</label>
+                        <label className="text-xs sm:text-sm font-medium">{t('timeLabel')}</label>
                         <Input
                           type="time"
                           {...register('preferredTime')}
@@ -256,15 +286,15 @@ export default function Schedule1on1Page() {
 
                     {/* Duração */}
                     <div className="space-y-1 sm:space-y-2">
-                      <label className="text-xs sm:text-sm font-medium">Duração</label>
+                      <label className="text-xs sm:text-sm font-medium">{t('durationLabel')}</label>
                       <Select onValueChange={(value: any) => setValue('duration', value)} defaultValue="60">
                         <SelectTrigger>
-                          <SelectValue placeholder="Selecione a duração" />
+                          <SelectValue placeholder={t('durationPlaceholder')} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="30">30 minutos</SelectItem>
-                          <SelectItem value="45">45 minutos</SelectItem>
-                          <SelectItem value="60">60 minutos</SelectItem>
+                          <SelectItem value="30">{t('durationMins', { time: '30' })}</SelectItem>
+                          <SelectItem value="45">{t('durationMins', { time: '45' })}</SelectItem>
+                          <SelectItem value="60">{t('durationMins', { time: '60' })}</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.duration && (
@@ -274,10 +304,10 @@ export default function Schedule1on1Page() {
 
                     {/* Agenda */}
                     <div className="space-y-1 sm:space-y-2">
-                      <label className="text-xs sm:text-sm font-medium">Agenda da Reunião</label>
+                      <label className="text-xs sm:text-sm font-medium">{t('agendaLabel')}</label>
                       <Textarea
                         {...register('agenda')}
-                        placeholder="Descreva os tópicos que gostaria de discutir na reunião..."
+                        placeholder={t('agendaPlaceholder')}
                         className="min-h-[100px]"
                       />
                       {errors.agenda && (
@@ -287,10 +317,10 @@ export default function Schedule1on1Page() {
 
                     {/* Notas Adicionais */}
                     <div className="space-y-1 sm:space-y-2">
-                      <label className="text-xs sm:text-sm font-medium">Notas Adicionais (opcional)</label>
+                      <label className="text-xs sm:text-sm font-medium">{t('notesLabel')}</label>
                       <Textarea
                         {...register('notes')}
-                        placeholder="Informações adicionais ou contexto relevante..."
+                        placeholder={t('notesPlaceholder')}
                         className="min-h-[80px]"
                       />
                     </div>
@@ -302,11 +332,11 @@ export default function Schedule1on1Page() {
                       className="w-full bg-brand-primary hover:bg-brand-primary/90 text-xs sm:text-base"
                     >
                       {loading ? (
-                        "Enviando solicitação..."
+                        t('submittingBtn')
                       ) : (
                         <>
                           <Send className="h-4 w-4 mr-2" />
-                          Solicitar Reunião 1:1
+                          {t('submitBtn')}
                         </>
                       )}
                     </Button>
@@ -321,29 +351,36 @@ export default function Schedule1on1Page() {
               {supervisor && (
                 <Card className="rounded-2xl">
                   <CardHeader>
-                    <CardTitle className="text-base sm:text-lg">Supervisor Selecionado</CardTitle>
+                    <CardTitle className="text-base sm:text-lg">{t('selectedSupTitle')}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Image
-                        src={supervisor.avatar}
-                        alt={supervisor.name}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div>
-                        <div className="font-medium text-sm sm:text-base">{supervisor.name}</div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">{supervisor.role}</div>
-                        <div className="text-xs text-muted-foreground">{supervisor.department}</div>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                        <span>Disponibilidade: {supervisor.availability}</span>
-                      </div>
-                    </div>
+                    {(() => {
+                      const supInfo = getSupervisorI18n(supervisor.id, supervisor);
+                      return (
+                        <>
+                          <div className="flex items-center gap-3 mb-4">
+                            <Image
+                              src={supInfo.avatar}
+                              alt={supInfo.name}
+                              width={48}
+                              height={48}
+                              className="w-12 h-12 rounded-full object-cover"
+                            />
+                            <div>
+                              <div className="font-medium text-sm sm:text-base">{supInfo.name}</div>
+                              <div className="text-xs sm:text-sm text-muted-foreground">{supInfo.role}</div>
+                              <div className="text-xs text-muted-foreground">{supInfo.department}</div>
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                              <Clock className="h-4 w-4 text-muted-foreground" />
+                              <span>{t('availabilityLabel', { time: supInfo.availability })}</span>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    })()}
                   </CardContent>
                 </Card>
               )}
@@ -352,12 +389,14 @@ export default function Schedule1on1Page() {
               {selectedType && (
                 <Card className="rounded-2xl">
                   <CardHeader>
-                    <CardTitle className="text-base sm:text-lg">Tipo de Reunião</CardTitle>
+                    <CardTitle className="text-base sm:text-lg">{t('selectedTypeTitle')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     {(() => {
-                      const type = meetingTypes.find(t => t.value === selectedType);
-                      return type ? (
+                      const baseType = meetingTypes.find(mt => mt.value === selectedType);
+                      if (!baseType) return null;
+                      const type = getTypeI18n(baseType.value, baseType);
+                      return (
                         <div className="space-y-2 sm:space-y-3">
                           <Badge className={type.color + ' text-xs sm:text-sm'}>
                             {type.label}
@@ -366,7 +405,7 @@ export default function Schedule1on1Page() {
                             {type.description}
                           </p>
                         </div>
-                      ) : null;
+                      );
                     })()}
                   </CardContent>
                 </Card>
@@ -375,14 +414,14 @@ export default function Schedule1on1Page() {
               {/* Dicas */}
               <Card className="rounded-2xl bg-blue-50 border-blue-200">
                 <CardHeader>
-                  <CardTitle className="text-base sm:text-lg text-blue-800">💡 Dicas</CardTitle>
+                  <CardTitle className="text-base sm:text-lg text-blue-800">{t('tipsTitle')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-blue-700">
-                    <li>• Seja específico sobre os tópicos que deseja discutir</li>
-                    <li>• Prepare perguntas antecipadamente</li>
-                    <li>• Considere seus objetivos de carreira</li>
-                    <li>• Traga exemplos concretos quando relevante</li>
+                    <li>{t('tip1')}</li>
+                    <li>{t('tip2')}</li>
+                    <li>{t('tip3')}</li>
+                    <li>{t('tip4')}</li>
                   </ul>
                 </CardContent>
               </Card>

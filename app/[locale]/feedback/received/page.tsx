@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Search, Star, Clock, User } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface Feedback {
   id: string;
@@ -24,6 +25,9 @@ interface Feedback {
 }
 
 export default function ReceivedFeedback() {
+  const t = useTranslations('Feedbacks');
+  const tReceived = useTranslations('Feedbacks.Received');
+  
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,7 +50,7 @@ export default function ReceivedFeedback() {
       const result = await response.json();
       setFeedbacks(result.data || []);
     } catch (error) {
-      console.error('Erro ao carregar feedbacks:', error);
+      console.error(t('errorLoadingReceived'), error);
       console.error('Error details:', error);
     } finally {
       setLoading(false);
@@ -111,9 +115,9 @@ export default function ReceivedFeedback() {
         <Sidebar />
   <main className="flex-1 p-2 sm:p-6 space-y-4 sm:space-y-6 max-w-7xl">
           <div className="space-y-1 sm:space-y-2">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Feedbacks Recebidos</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{tReceived('title')}</h1>
             <p className="text-xs sm:text-sm text-muted-foreground">
-              Acompanhe o reconhecimento e sugestões da sua equipe
+              {tReceived('subtitle')}
             </p>
           </div>
 
@@ -124,7 +128,7 @@ export default function ReceivedFeedback() {
                 <div className="flex-1 relative w-full">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Buscar por título, autor ou conteúdo..."
+                    placeholder={t('searchPlaceholderReceived')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-9 text-sm"
@@ -132,12 +136,12 @@ export default function ReceivedFeedback() {
                 </div>
                 <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
                   <SelectTrigger className="w-full sm:w-[180px] text-sm">
-                    <SelectValue placeholder="Período" />
+                    <SelectValue placeholder={t('period')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Todos</SelectItem>
-                    <SelectItem value="week">Última semana</SelectItem>
-                    <SelectItem value="month">Último mês</SelectItem>
+                    <SelectItem value="all">{t('all')}</SelectItem>
+                    <SelectItem value="week">{t('week')}</SelectItem>
+                    <SelectItem value="month">{t('month')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -149,7 +153,7 @@ export default function ReceivedFeedback() {
             {filteredFeedbacks.length === 0 ? (
               <Card className="rounded-2xl">
                 <CardContent className="pt-6 text-center py-12">
-                  <p className="text-muted-foreground">Nenhum feedback encontrado.</p>
+                  <p className="text-muted-foreground">{tReceived('notFound')}</p>
                 </CardContent>
               </Card>
             ) : (
@@ -166,7 +170,7 @@ export default function ReceivedFeedback() {
                           </div>
                           {!feedback.isRead && (
                             <Badge variant="secondary" className="bg-brand-primary text-white text-xs sm:text-sm">
-                              Novo
+                              {t('newBadge')}
                             </Badge>
                           )}
                         </div>
@@ -200,14 +204,14 @@ export default function ReceivedFeedback() {
                             className="text-xs sm:text-sm px-2 sm:px-4"
                             onClick={() => markAsRead(feedback.id)}
                           >
-                            Ver completo
+                            {t('seeFull')}
                           </Button>
                         </SheetTrigger>
                         <SheetContent className="w-full max-w-full sm:w-[540px] overflow-y-auto">
                           <SheetHeader>
                             <SheetTitle>{feedback.title}</SheetTitle>
                             <SheetDescription>
-                              Feedback de {feedback.from} • {feedback.fromRole}
+                              {tReceived('feedbackFrom', { from: feedback.from, role: feedback.fromRole })}
                             </SheetDescription>
                           </SheetHeader>
                           <div className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
@@ -229,7 +233,7 @@ export default function ReceivedFeedback() {
                               <p className="whitespace-pre-line">{feedback.content}</p>
                             </div>
                             <div>
-                              <h4 className="font-medium mb-2">Tags:</h4>
+                              <h4 className="font-medium mb-2">{t('tags')}</h4>
                               <div className="flex flex-wrap gap-1 sm:gap-2">
                                 {feedback.tags.map((tag) => (
                                   <Badge key={tag} variant="secondary">

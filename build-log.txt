@@ -1,0 +1,58 @@
+
+> nextjs@0.1.0 build
+> NEXT_FONT_GOOGLE_OPTIMIZED=false next build
+
+  ▲ Next.js 14.2.14
+
+   Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/13) ...
+   Generating static pages (3/13) 
+   Generating static pages (6/13) 
+   Generating static pages (9/13) 
+ ✓ Generating static pages (13/13)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /_not-found                          872 B            88 kB
+├ ƒ /[locale]                            6.32 kB         158 kB
+├ ƒ /[locale]/career-plan                4.7 kB          157 kB
+├ ƒ /[locale]/communications             2.31 kB         154 kB
+├ ƒ /[locale]/communications/new         4.42 kB         178 kB
+├ ƒ /[locale]/feedback/given             2.91 kB         155 kB
+├ ƒ /[locale]/feedback/given/new         4.93 kB         178 kB
+├ ƒ /[locale]/feedback/received          2.54 kB         154 kB
+├ ƒ /[locale]/rewards                    3.29 kB         155 kB
+├ ƒ /[locale]/schedule-1-on-1            4.22 kB         178 kB
+├ ƒ /[locale]/training                   4.4 kB          156 kB
+├ ○ /api/v1/career-plan                  0 B                0 B
+├ ○ /api/v1/colleagues                   0 B                0 B
+├ ƒ /api/v1/communications               0 B                0 B
+├ ƒ /api/v1/feedback                     0 B                0 B
+├ ƒ /api/v1/moods                        0 B                0 B
+├ ƒ /api/v1/rewards                      0 B                0 B
+├ ○ /api/v1/schedule                     0 B                0 B
+├ ○ /api/v1/stats                        0 B                0 B
+├ ○ /api/v1/training                     0 B                0 B
+└ ○ /api/v1/users/me                     0 B                0 B
++ First Load JS shared by all            87.1 kB
+  ├ chunks/117-b15723449844168c.js       31.6 kB
+  ├ chunks/fd9d1056-3750f1c68fb99acb.js  53.6 kB
+  └ other shared chunks (total)          1.9 kB
+
+
+ƒ Middleware                             41.5 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

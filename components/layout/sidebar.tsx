@@ -21,54 +21,57 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
-const navigation = [
-  {
-    name: 'Dashboard',
-    href: '/',
-    icon: Home,
-  },
-  {
-    name: 'Feedback',
-    icon: MessageSquare,
-    children: [
-      { name: 'Recebidos', href: '/feedback/received' },
-      { name: 'Realizados', href: '/feedback/given' },
-      { name: 'Dar Feedback', href: '/feedback/given/new' },
-    ],
-  },
-  {
-    name: 'Treinamento',
-    href: '/training',
-    icon: BookOpen,
-  },
-  {
-    name: 'Comunicação',
-    icon: MessageSquare,
-    children: [
-      { name: 'Mural', href: '/communications' },
-      { name: 'Nova Postagem', href: '/communications/new' },
-    ],
-  },
-  {
-    name: 'Plano de Carreira',
-    href: '/career-plan',
-    icon: TrendingUp,
-  },
-  {
-    name: 'Recompensas',
-    href: '/rewards',
-    icon: Gift,
-  },
-  {
-    name: 'Configurações',
-    href: '/settings',
-    icon: Settings,
-  },
-];
+import { useTranslations } from 'next-intl';
 
 export default function Sidebar({ mobileOpen, onMobileClose }: { mobileOpen?: boolean; onMobileClose?: () => void }) {
+  const t = useTranslations('Navigation');
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const navigation = [
+    {
+      name: t('dashboard'),
+      href: '/',
+      icon: Home,
+    },
+    {
+      name: t('feedback'),
+      icon: MessageSquare,
+      children: [
+        { name: t('feedbackReceived'), href: '/feedback/received' },
+        { name: t('feedbackGiven'), href: '/feedback/given' },
+        { name: t('feedbackNew'), href: '/feedback/given/new' },
+      ],
+    },
+    {
+      name: t('training'),
+      href: '/training',
+      icon: BookOpen,
+    },
+    {
+      name: t('communications'),
+      icon: MessageSquare,
+      children: [
+        { name: t('communicationsWall'), href: '/communications' },
+        { name: t('communicationsNew'), href: '/communications/new' },
+      ],
+    },
+    {
+      name: t('careerPlan'),
+      href: '/career-plan',
+      icon: TrendingUp,
+    },
+    {
+      name: t('rewards'),
+      href: '/rewards',
+      icon: Gift,
+    },
+    {
+      name: t('settings'),
+      href: '/settings',
+      icon: Settings,
+    },
+  ];
 
   const handleDropdown = (name: string) => {
     setOpenDropdown((prev) => (prev === name ? null : name));

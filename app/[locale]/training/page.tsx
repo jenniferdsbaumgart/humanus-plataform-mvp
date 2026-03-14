@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { BookOpen, Clock, Star, Play } from 'lucide-react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 interface Training {
   id: string;
@@ -30,6 +31,8 @@ interface Training {
 }
 
 export default function TrainingPage() {
+  const t = useTranslations('Training');
+  const tDiff = useTranslations('Training.Difficulty');
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTraining, setSelectedTraining] = useState<Training | null>(null);
@@ -45,7 +48,7 @@ export default function TrainingPage() {
       const data = await response.json();
       setTrainings(data.courses || []);
     } catch (error) {
-      console.error('Erro ao carregar treinamentos:', error);
+      console.error(t('errorLoading'), error);
     } finally {
       setLoading(false);
     }
@@ -65,6 +68,15 @@ export default function TrainingPage() {
     'básico': 'bg-green-100 text-green-800',
     'intermediário': 'bg-yellow-100 text-yellow-800',
     'avançado': 'bg-red-100 text-red-800'
+  };
+
+  const getDifficultyLabel = (difficulty: string) => {
+    switch (difficulty) {
+      case 'básico': return tDiff('basic');
+      case 'intermediário': return tDiff('intermediate');
+      case 'avançado': return tDiff('advanced');
+      default: return difficulty;
+    }
   };
 
   if (loading) {
@@ -97,10 +109,10 @@ export default function TrainingPage() {
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3">
               <BookOpen className="h-8 w-8 text-brand-primary" />
-              Treinamentos
+              {t('title')}
             </h1>
             <p className="text-muted-foreground">
-              Desenvolva suas habilidades e ganhe pontos completando nossos treinamentos
+              {t('subtitle')}
             </p>
           </div>
 
@@ -120,7 +132,7 @@ export default function TrainingPage() {
                   />
                   <div className="absolute top-3 right-3">
                     <Badge className={difficultyColors[training.difficulty as keyof typeof difficultyColors]}>
-                      {training.difficulty}
+                      {getDifficultyLabel(training.difficulty)}
                     </Badge>
                   </div>
                 </div>
@@ -133,18 +145,18 @@ export default function TrainingPage() {
                   <div className="flex items-center justify-between text-sm text-muted-foreground">
                     <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />
-                      {training.duration} min
+                      {t('duration', { duration: training.duration })}
                     </div>
                     <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 text-yellow-500" />
-                      +{training.points} pontos
+                      {t('points', { points: training.points })}
                     </div>
                   </div>
 
                   {training.progress > 0 && (
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span>Progresso</span>
+                        <span>{t('progress')}</span>
                         <span>{training.progress}%</span>
                       </div>
                       <Progress value={training.progress} className="h-2" />
@@ -169,7 +181,7 @@ export default function TrainingPage() {
                     className="w-full bg-gradient-to-r from-brand-primary to-brand-medium hover:from-brand-primary/90 hover:to-brand-medium/90"
                   >
                     <Play className="h-4 w-4 mr-2" />
-                    {training.progress > 0 ? 'Continuar' : 'Iniciar'}
+                    {training.progress > 0 ? t('continueBtn') : t('startBtn')}
                   </Button>
                 </CardContent>
               </Card>
@@ -180,7 +192,7 @@ export default function TrainingPage() {
             <Card className="rounded-2xl">
               <CardContent className="pt-6 text-center py-12">
                 <BookOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground">Nenhum treinamento disponível no momento.</p>
+                <p className="text-muted-foreground">{t('notFound')}</p>
               </CardContent>
             </Card>
           )}

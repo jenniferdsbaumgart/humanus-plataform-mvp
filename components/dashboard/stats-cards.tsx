@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { TrendingDown, TrendingUp, MessageSquare, GraduationCap, Calendar } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslations } from 'next-intl';
 
 interface Stats {
   turnover: {
@@ -28,6 +29,7 @@ interface Stats {
 }
 
 export function StatsCards() {
+  const t = useTranslations('Dashboard.StatsCards');
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -73,7 +75,7 @@ export function StatsCards() {
     <div className="flex gap-4 overflow-x-auto md:grid md:gap-6 md:grid-cols-2 lg:grid-cols-4 scrollbar-hide pb-2">
       <Card className="min-w-[160px] max-w-[160px] w-[160px] rounded-2xl md:min-w-0 md:max-w-none md:w-auto">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Turnover Estimado</CardTitle>
+          <CardTitle className="text-sm font-medium">{t('turnover')}</CardTitle>
           {stats.turnover.trend === 'down' ? (
             <TrendingDown className="h-6 w-6 text-green-600" />
           ) : (
@@ -83,46 +85,46 @@ export function StatsCards() {
         <CardContent>
           <div className="text-2xl font-bold">{stats.turnover.current}%</div>
           <p className="text-xs text-muted-foreground">
-            {stats.turnover.trend === 'down' ? 'Redução' : 'Aumento'} de {Math.abs(turnoverChange).toFixed(1)}% vs mês anterior
+            {stats.turnover.trend === 'down' ? t('reduction') : t('increase')} de {Math.abs(turnoverChange).toFixed(1)}% {t('vsPrevious')}
           </p>
         </CardContent>
       </Card>
 
       <Card className="min-w-[160px] max-w-[160px] w-[160px] rounded-2xl md:min-w-0 md:max-w-none md:w-auto">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Feedbacks do Mês</CardTitle>
+          <CardTitle className="text-sm font-medium">{t('feedbacksMonth')}</CardTitle>
           <MessageSquare className="h-6 w-6 text-brand-medium" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{stats.feedbacks.received}</div>
           <p className="text-xs text-muted-foreground">
-            {feedbackProgress.toFixed(0)}% da meta mensal ({stats.feedbacks.monthlyTarget})
+            {feedbackProgress.toFixed(0)}% {t('ofMonthlyTarget')} ({stats.feedbacks.monthlyTarget})
           </p>
         </CardContent>
       </Card>
 
       <Card className="min-w-[160px] max-w-[160px] w-[160px] rounded-2xl md:min-w-0 md:max-w-none md:w-auto">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Treinamentos</CardTitle>
+          <CardTitle className="text-sm font-medium">{t('trainings')}</CardTitle>
           <GraduationCap className="h-6 w-6 text-brand-accent" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{stats.training.completed}</div>
           <p className="text-xs text-muted-foreground">
-            {stats.training.inProgress} em andamento • {trainingProgress.toFixed(0)}% concluído
+            {stats.training.inProgress} {t('inProgress')} • {trainingProgress.toFixed(0)}% {t('completed')}
           </p>
         </CardContent>
       </Card>
 
       <Card className="min-w-[160px] max-w-[160px] w-[160px] rounded-2xl md:min-w-0 md:max-w-none md:w-auto">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Sessões 1:1</CardTitle>
+          <CardTitle className="text-sm font-medium">{t('sessions1on1')}</CardTitle>
           <Calendar className="h-6 w-6 text-purple-600" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{stats.sessions.scheduled}</div>
           <p className="text-xs text-muted-foreground">
-            {stats.sessions.thisMonth} realizadas este mês
+            {stats.sessions.thisMonth} {t('heldThisMonth')}
           </p>
         </CardContent>
       </Card>

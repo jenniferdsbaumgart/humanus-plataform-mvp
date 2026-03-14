@@ -17,6 +17,8 @@ import { Progress } from '@/components/ui/progress';
 import Image from 'next/image';
 import { useState } from 'react';
 import Sidebar from './sidebar';
+import { LanguageSwitcher } from './language-switcher';
+
 export function Header() {
   const { theme, setTheme } = useTheme();
   const { user } = useAppStore();
@@ -58,6 +60,8 @@ export function Header() {
               </div>
             </div>
           </div>
+
+          <LanguageSwitcher />
 
           {/* Theme Toggle */}
           <Button

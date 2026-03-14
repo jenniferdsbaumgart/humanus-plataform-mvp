@@ -12,6 +12,7 @@ import { useAppStore } from '@/lib/store';
 import { useToast } from '@/hooks/use-toast';
 import { Gift, Search, Star, Clock } from 'lucide-react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 interface Reward {
   id: string;
@@ -34,6 +35,8 @@ const categoryColors = {
 };
 
 export default function RewardsPage() {
+  const t = useTranslations('Rewards');
+  const tCat = useTranslations('Rewards.Categories');
   const [rewards, setRewards] = useState<Reward[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -41,6 +44,18 @@ export default function RewardsPage() {
   const [redeeming, setRedeeming] = useState<string | null>(null);
   const { user } = useAppStore();
   const { toast } = useToast();
+  
+  const getCategoryLabel = (category: string) => {
+    switch (category) {
+      case 'alimentação': return tCat('food');
+      case 'educação': return tCat('education');
+      case 'bem-estar': return tCat('wellness');
+      case 'tempo': return tCat('time');
+      case 'comodidade': return tCat('convenience');
+      case 'tecnologia': return tCat('technology');
+      default: return category;
+    }
+  };
 
   useEffect(() => {
     fetchRewards();
@@ -52,7 +67,7 @@ export default function RewardsPage() {
       const data = await response.json();
       setRewards(data.items || []);
     } catch (error) {
-      console.error('Erro ao carregar recompensas:', error);
+      console.error(t('errorLoading'), error);
     } finally {
       setLoading(false);
     }
@@ -74,14 +89,14 @@ export default function RewardsPage() {
 
       if (response.ok) {
         toast({
-          title: "Recompensa resgatada!",
-          description: `${reward.title} foi resgatada com sucesso!`,
+          title: t('successTitle'),
+          description: t('successDesc', { title: reward.title }),
         });
       }
     } catch (error) {
       toast({
-        title: "Erro",
-        description: "Não foi possível resgatar a recompensa.",
+        title: t('errorTitle'),
+        description: t('errorDesc'),
         variant: "destructive",
       });
     } finally {
@@ -130,15 +145,15 @@ export default function RewardsPage() {
           <div className="space-y-2">
             <h1 className="text-2xl font-bold tracking-tight flex items-center gap-3">
               <Gift className="h-8 w-8 text-brand-primary" />
-              Catálogo de Recompensas
+              {t('title')}
             </h1>
             <p className="text-md text-muted-foreground">
-              Resgate recompensas incríveis com seus pontos acumulados
+              {t('subtitle')}
             </p>
             {user && (
               <div className="flex items-center gap-2 text-sm">
                 <Star className="h-4 w-4 text-yellow-500" />
-                <span className="font-medium">Seus pontos: {user.score.total}</span>
+                <span className="font-medium">{t('yourPoints', { points: user.score.total })}</span>
               </div>
             )}
           </div>
@@ -150,7 +165,7 @@ export default function RewardsPage() {
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Buscar recompensas..."
+                    placeholder={t('searchPlaceholder')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-9"
@@ -158,13 +173,13 @@ export default function RewardsPage() {
                 </div>
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Categoria" />
+                    <SelectValue placeholder={t('category')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Todas</SelectItem>
+                    <SelectItem value="all">{t('allCategories')}</SelectItem>
                     {categories.map((category) => (
                       <SelectItem key={category} value={category}>
-                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                        {getCategoryLabel(category)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -195,7 +210,7 @@ export default function RewardsPage() {
                       <Badge
                         className={`text-[10px] sm:text-xs px-1.5 py-0.5 ${categoryColors[reward.category as keyof typeof categoryColors] || 'bg-gray-100 text-gray-800'}`}
                       >
-                        {reward.category}
+                        {getCategoryLabel(reward.category)}
                       </Badge>
                     </div>
                   </div>
@@ -210,7 +225,7 @@ export default function RewardsPage() {
                       <div className="flex items-center gap-1">
                         <Star className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500" />
                         <span className="font-bold text-md sm:text-base">{reward.cost}</span>
-                        <span className="text-[13px] sm:text-md text-muted-foreground">pontos</span>
+                        <span className="text-[13px] sm:text-md text-muted-foreground">{t('points')}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs text-muted-foreground">
@@ -224,7 +239,7 @@ export default function RewardsPage() {
                           disabled={redeeming === reward.id}
                           className="w-full bg-brand-primary hover:bg-brand-primary/90 text-[13px] sm:text-xs py-1.5 sm:py-2"
                         >
-                          {redeeming === reward.id ? 'Resgatando...' : 'Resgatar'}
+                          {redeeming === reward.id ? t('redeemingBtn') : t('redeemBtn')}
                         </Button>
                       ) : (
                         <Button
@@ -232,7 +247,7 @@ export default function RewardsPage() {
                           variant="outline"
                           className="w-full text-[10px] sm:text-xs py-1.5 sm:py-2"
                         >
-                          Precisa de {pointsNeeded} pontos
+                          {t('needsPoints', { points: pointsNeeded })}
                         </Button>
                       )
                     ) : (
@@ -241,7 +256,7 @@ export default function RewardsPage() {
                         variant="outline"
                         className="w-full text-[10px] sm:text-xs py-1.5 sm:py-2"
                       >
-                        Esgotado
+                        {t('soldOut')}
                       </Button>
                     )}
                   </CardContent>
@@ -254,7 +269,7 @@ export default function RewardsPage() {
             <Card className="rounded-2xl">
               <CardContent className="pt-6 text-center py-12">
                 <Gift className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground">Nenhuma recompensa encontrada.</p>
+                <p className="text-muted-foreground">{t('notFound')}</p>
               </CardContent>
             </Card>
           )}

@@ -12,6 +12,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { StarRating } from '@/components/feedback/star-rating';
 import { Search, Clock, User, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface GivenFeedback {
   id: string;
@@ -26,6 +27,9 @@ interface GivenFeedback {
 }
 
 export default function GivenFeedbackPage() {
+  const t = useTranslations('Feedbacks');
+  const tGiven = useTranslations('Feedbacks.Given');
+  
   const [feedbacks, setFeedbacks] = useState<GivenFeedback[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -48,7 +52,7 @@ export default function GivenFeedbackPage() {
       const result = await response.json();
       setFeedbacks(result.data || []);
     } catch (error) {
-      console.error('Erro ao carregar feedbacks realizados:', error);
+      console.error(t('errorLoadingGiven'), error);
       console.error('Error details:', error);
     } finally {
       setLoading(false);
@@ -104,15 +108,15 @@ export default function GivenFeedbackPage() {
   <main className="flex-1 p-2 sm:p-6 space-y-4 sm:space-y-6 max-w-7xl">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
             <div className="space-y-1 sm:space-y-2">
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Feedbacks Realizados</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{tGiven('title')}</h1>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Acompanhe os feedbacks que você compartilhou com a equipe
+                {tGiven('subtitle')}
               </p>
             </div>
             <Link href="/feedback/given/new" className="w-full sm:w-auto">
               <Button className="bg-brand-primary hover:bg-brand-primary/90 w-full sm:w-auto text-xs sm:text-base">
                 <Plus className="h-4 w-4 mr-2" />
-                Dar Feedback
+                {tGiven('giveFeedbackBtn')}
               </Button>
             </Link>
           </div>
@@ -124,7 +128,7 @@ export default function GivenFeedbackPage() {
                 <div className="flex-1 relative w-full">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Buscar por título, destinatário ou conteúdo..."
+                    placeholder={t('searchPlaceholderGiven')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-9 text-sm"
@@ -132,12 +136,12 @@ export default function GivenFeedbackPage() {
                 </div>
                 <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
                   <SelectTrigger className="w-full sm:w-[180px] text-sm">
-                    <SelectValue placeholder="Período" />
+                    <SelectValue placeholder={t('period')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Todos</SelectItem>
-                    <SelectItem value="week">Última semana</SelectItem>
-                    <SelectItem value="month">Último mês</SelectItem>
+                    <SelectItem value="all">{t('all')}</SelectItem>
+                    <SelectItem value="week">{t('week')}</SelectItem>
+                    <SelectItem value="month">{t('month')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -149,11 +153,11 @@ export default function GivenFeedbackPage() {
             {filteredFeedbacks.length === 0 ? (
               <Card className="rounded-2xl">
                 <CardContent className="pt-6 text-center py-12">
-                  <p className="text-muted-foreground mb-4">Nenhum feedback encontrado.</p>
+                  <p className="text-muted-foreground mb-4">{tGiven('notFound')}</p>
                   <Link href="/feedback/given/new">
                     <Button className="bg-brand-primary hover:bg-brand-primary/90">
                       <Plus className="h-4 w-4 mr-2" />
-                      Dar seu primeiro feedback
+                      {tGiven('giveFirstBtn')}
                     </Button>
                   </Link>
                 </CardContent>
@@ -167,14 +171,14 @@ export default function GivenFeedbackPage() {
                         <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                           <div className="flex items-center gap-1 sm:gap-2">
                             <User className="h-4 w-4 text-muted-foreground" />
-                            <span className="font-medium text-sm sm:text-base">Para: {feedback.to}</span>
+                            <span className="font-medium text-sm sm:text-base">{t('to', { to: feedback.to })}</span>
                             <span className="text-xs sm:text-sm text-muted-foreground">• {feedback.toRole}</span>
                           </div>
                           <Badge 
                             variant={feedback.type === 'positivo' ? 'default' : 'secondary'}
                             className={feedback.type === 'positivo' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800 text-xs sm:text-sm'}
                           >
-                            {feedback.type === 'positivo' ? 'Positivo' : 'Construtivo'}
+                            {feedback.type === 'positivo' ? t('positive') : t('constructive')}
                           </Badge>
                         </div>
                         <h3 className="font-semibold text-base sm:text-lg">{feedback.title}</h3>
@@ -184,7 +188,7 @@ export default function GivenFeedbackPage() {
                             {new Date(feedback.date).toLocaleDateString('pt-BR')}
                           </div>
                           <div className="flex items-center gap-2">
-                            <span>Avaliação:</span>
+                            <span>{t('rating')}</span>
                             <StarRating rating={feedback.rating} readonly size="sm" />
                             <span>{feedback.rating}/5</span>
                           </div>
@@ -203,14 +207,14 @@ export default function GivenFeedbackPage() {
                       <Sheet>
                         <SheetTrigger asChild>
                           <Button variant="outline" size="sm" className="text-xs sm:text-sm px-2 sm:px-4">
-                            Ver completo
+                            {t('seeFull')}
                           </Button>
                         </SheetTrigger>
                         <SheetContent className="w-full max-w-full sm:w-[540px] overflow-y-auto">
                           <SheetHeader>
                             <SheetTitle>{feedback.title}</SheetTitle>
                             <SheetDescription>
-                              Feedback para {feedback.to} • {feedback.toRole}
+                              {tGiven('feedbackFor', { to: feedback.to, role: feedback.toRole })}
                             </SheetDescription>
                           </SheetHeader>
                           <div className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
@@ -229,19 +233,19 @@ export default function GivenFeedbackPage() {
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="text-xs sm:text-sm font-medium">Tipo:</span>
+                              <span className="text-xs sm:text-sm font-medium">{t('typeLabel')}</span>
                               <Badge 
                                 variant={feedback.type === 'positivo' ? 'default' : 'secondary'}
                                 className={feedback.type === 'positivo' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800 text-xs sm:text-sm'}
                               >
-                                {feedback.type === 'positivo' ? 'Positivo' : 'Construtivo'}
+                                {feedback.type === 'positivo' ? t('positive') : t('constructive')}
                               </Badge>
                             </div>
                             <div className="prose prose-sm max-w-none">
                               <p className="whitespace-pre-line">{feedback.content}</p>
                             </div>
                             <div>
-                              <h4 className="font-medium mb-2">Tags:</h4>
+                              <h4 className="font-medium mb-2">{t('tags')}</h4>
                               <div className="flex flex-wrap gap-1 sm:gap-2">
                                 {feedback.tags.map((tag) => (
                                   <Badge key={tag} variant="secondary">

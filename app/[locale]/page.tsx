@@ -8,8 +8,10 @@ import { QuickActions } from '@/components/dashboard/quick-actions';
 import { MoodTracker } from '@/components/dashboard/mood-tracker';
 import { CommunicationFeed } from '@/components/dashboard/communication-feed';
 import { useAppStore } from '@/lib/store';
+import { useTranslations } from 'next-intl';
 
 export default function Dashboard() {
+  const t = useTranslations('Dashboard');
   const { setUser } = useAppStore();
 
   useEffect(() => {
@@ -27,9 +29,9 @@ export default function Dashboard() {
         <Sidebar />
         <main className="flex-1 p-2 sm:p-4 md:p-6 space-y-4 sm:space-y-6 max-w-9xl">
           <div className="space-y-2">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{t('title')}</h1>
             <p className="text-muted-foreground text-sm sm:text-base">
-              Acompanhe seu desenvolvimento profissional e bem-estar
+              {t('subtitle')}
             </p>
           </div>
           <StatsCards />

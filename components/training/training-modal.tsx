@@ -9,6 +9,7 @@ import { Progress } from '@/components/ui/progress';
 import { useAppStore } from '@/lib/store';
 import { useToast } from '@/hooks/use-toast';
 import { BookOpen, Clock, Star, CheckCircle, XCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface Quiz {
   question: string;
@@ -37,6 +38,9 @@ interface TrainingModalProps {
 }
 
 export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps) {
+  const t = useTranslations('Training');
+  const tModal = useTranslations('Training.Modal');
+  const tDiff = useTranslations('Training.Difficulty');
   const [currentStep, setCurrentStep] = useState<'content' | 'quiz' | 'result'>('content');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
@@ -108,8 +112,8 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
       setUser(updatedUser);
 
       toast({
-        title: "Parabéns! 🎉",
-        description: `Você ganhou ${training.points} pontos por completar o treinamento!`,
+        title: tModal('toastSuccessTitle'),
+        description: tModal('toastSuccessDesc', { points: training.points }),
       });
     }
   };
@@ -118,6 +122,15 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
     'básico': 'bg-green-100 text-green-800',
     'intermediário': 'bg-yellow-100 text-yellow-800',
     'avançado': 'bg-red-100 text-red-800'
+  };
+
+  const getDifficultyLabel = (difficulty: string) => {
+    switch (difficulty) {
+      case 'básico': return tDiff('basic');
+      case 'intermediário': return tDiff('intermediate');
+      case 'avançado': return tDiff('advanced');
+      default: return difficulty;
+    }
   };
 
   return (
@@ -146,14 +159,14 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                {training.duration} min
+                {t('duration', { duration: training.duration })}
               </div>
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 text-yellow-500" />
-                +{training.points} pontos
+                {t('points', { points: training.points })}
               </div>
               <Badge className={difficultyColors[training.difficulty as keyof typeof difficultyColors]}>
-                {training.difficulty}
+                {getDifficultyLabel(training.difficulty)}
               </Badge>
             </div>
 
@@ -171,10 +184,10 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
 
             <div className="flex gap-3">
               <Button variant="outline" onClick={handleClose} className="flex-1">
-                Cancelar
+                {tModal('cancelBtn')}
               </Button>
               <Button onClick={startQuiz} className="flex-1 bg-brand-primary hover:bg-brand-primary/90">
-                Iniciar Quiz ({training.quiz.length} perguntas)
+                {tModal('startQuizBtn', { count: training.quiz.length })}
               </Button>
             </div>
           </div>
@@ -184,7 +197,7 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">
-                Pergunta {currentQuestion + 1} de {training.quiz.length}
+                {tModal('questionHeader', { current: currentQuestion + 1, total: training.quiz.length })}
               </h3>
               <Progress 
                 value={((currentQuestion + 1) / training.quiz.length) * 100} 
@@ -226,7 +239,7 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
                 onClick={previousQuestion}
                 disabled={currentQuestion === 0}
               >
-                Anterior
+                {tModal('previousBtn')}
               </Button>
               
               <div className="flex-1" />
@@ -237,7 +250,7 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
                   disabled={selectedAnswers[currentQuestion] === -1}
                   className="bg-brand-primary hover:bg-brand-primary/90"
                 >
-                  Próxima
+                  {tModal('nextBtn')}
                 </Button>
               ) : (
                 <Button
@@ -245,7 +258,7 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
                   disabled={selectedAnswers[currentQuestion] === -1}
                   className="bg-green-600 hover:bg-green-700"
                 >
-                  Finalizar Quiz
+                  {tModal('finishBtn')}
                 </Button>
               )}
             </div>
@@ -264,29 +277,29 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
 
             <div>
               <h3 className="text-2xl font-bold mb-2">
-                {score >= 70 ? 'Parabéns!' : 'Tente novamente'}
+                {score >= 70 ? tModal('resultTitleSuccess') : tModal('resultTitleFail')}
               </h3>
               <p className="text-lg text-muted-foreground">
-                Você acertou {score}% das questões
+                {tModal('resultMessage', { score })}
               </p>
             </div>
 
             {score >= 70 ? (
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                 <p className="text-green-800 font-medium">
-                  ✅ Treinamento concluído com sucesso!
+                  {tModal('trainingCompletedMsg')}
                 </p>
                 <p className="text-green-700 text-sm mt-1">
-                  Você ganhou +{training.points} pontos
+                  {tModal('earnedPointsMsg', { points: training.points })}
                 </p>
               </div>
             ) : (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                 <p className="text-red-800 font-medium">
-                  ❌ Pontuação mínima: 70%
+                  {tModal('minScoreMsg')}
                 </p>
                 <p className="text-red-700 text-sm mt-1">
-                  Revise o conteúdo e tente novamente
+                  {tModal('reviewContentMsg')}
                 </p>
               </div>
             )}
@@ -302,14 +315,14 @@ export function TrainingModal({ training, isOpen, onClose }: TrainingModalProps)
                   }}
                   className="flex-1"
                 >
-                  Revisar Conteúdo
+                  {tModal('reviewBtn')}
                 </Button>
               )}
               <Button
                 onClick={handleClose}
                 className="flex-1 bg-brand-primary hover:bg-brand-primary/90"
               >
-                Concluir
+                {tModal('doneBtn')}
               </Button>
             </div>
           </div>

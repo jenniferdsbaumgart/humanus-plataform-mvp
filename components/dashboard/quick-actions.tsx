@@ -4,52 +4,55 @@ import Link from 'next/link';
 import { MessageSquarePlus, Eye, Calendar, BookOpen, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
-const actions = [
-  {
-    title: 'Dar Feedback',
-    description: 'Compartilhe feedback com colegas',
-    icon: MessageSquarePlus,
-    href: '/feedback/given/new',
-    color: 'bg-gray-300 hover:bg-gray-400 text-gray-900',
-  },
-  {
-    title: 'Ver Feedbacks',
-    description: 'Confira feedbacks recebidos',
-    icon: Eye,
-    href: '/feedback/received',
-    color: 'bg-slate-300 hover:bg-slate-400 text-slate-900',
-  },
-  {
-    title: 'Agendar 1:1',
-    description: 'Marque reunião de carreira',
-    icon: Calendar,
-    href: '/schedule-1-on-1',
-    color: 'bg-emerald-200 hover:bg-emerald-300 text-emerald-900',
-  },
-  {
-    title: 'Treinamento',
-    description: 'Continue seu desenvolvimento',
-    icon: BookOpen,
-    href: '/training',
-    color: 'bg-blue-200 hover:bg-blue-300 text-blue-900',
-  },
-  {
-    title: 'Lojinha',
-    description: 'Resgate recompensas',
-    icon: Gift,
-    href: '/rewards',
-    color: 'bg-fuchsia-200 hover:bg-fuchsia-300 text-fuchsia-900',
-  },
-];
+import { useTranslations } from 'next-intl';
 
 export function QuickActions() {
+  const t = useTranslations('Dashboard.QuickActions');
+
+  const actions = [
+    {
+      title: t('giveFeedback'),
+      description: t('giveFeedbackDesc'),
+      icon: MessageSquarePlus,
+      href: '/feedback/given/new',
+      color: 'bg-gray-300 hover:bg-gray-400 text-gray-900',
+    },
+    {
+      title: t('viewFeedbacks'),
+      description: t('viewFeedbacksDesc'),
+      icon: Eye,
+      href: '/feedback/received',
+      color: 'bg-slate-300 hover:bg-slate-400 text-slate-900',
+    },
+    {
+      title: t('schedule1on1'),
+      description: t('schedule1on1Desc'),
+      icon: Calendar,
+      href: '/schedule-1-on-1',
+      color: 'bg-emerald-200 hover:bg-emerald-300 text-emerald-900',
+    },
+    {
+      title: t('training'),
+      description: t('trainingDesc'),
+      icon: BookOpen,
+      href: '/training',
+      color: 'bg-blue-200 hover:bg-blue-300 text-blue-900',
+    },
+    {
+      title: t('store'),
+      description: t('storeDesc'),
+      icon: Gift,
+      href: '/rewards',
+      color: 'bg-fuchsia-200 hover:bg-fuchsia-300 text-fuchsia-900',
+    },
+  ];
+
   return (
     <Card className="rounded-2xl lg:h-[265px] lg:py-2">
       <CardHeader className='pb-1'>
-        <CardTitle>Ações Rápidas</CardTitle>
+        <CardTitle>{t('title')}</CardTitle>
         <CardDescription>
-          Acesso direto às funcionalidades mais utilizadas
+          {t('subtitle')}
         </CardDescription>
       </CardHeader>
       <CardContent>

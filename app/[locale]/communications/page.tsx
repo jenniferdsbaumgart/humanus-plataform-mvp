@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MessageSquare, Plus, Search } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface Communication {
   id: string;
@@ -24,6 +25,24 @@ interface Communication {
 }
 
 export default function CommunicationsPage() {
+  const t = useTranslations('Communications');
+  const tCat = useTranslations('Communications.Categories');
+  
+  const getCategoryLabel = (category: string) => {
+    switch (category) {
+      case 'Direção Médica': return tCat('medical');
+      case 'RH': return tCat('hr');
+      case 'Coordenação': return tCat('coordination');
+      case 'TI': return tCat('it');
+      case 'Qualidade': return tCat('quality');
+      case 'Segurança': return tCat('safety');
+      case 'Eventos': return tCat('events');
+      case 'Direção': return tCat('direction');
+      case 'Geral': return tCat('general');
+      default: return category;
+    }
+  };
+
   const [communications, setCommunications] = useState<Communication[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,7 +65,7 @@ export default function CommunicationsPage() {
       const data = await response.json();
       setCommunications(data.posts || []);
     } catch (error) {
-      console.error('Erro ao carregar comunicações:', error);
+      console.error(t('errorLoading'), error);
       console.error('Error details:', error);
     } finally {
       setLoading(false);
@@ -96,16 +115,16 @@ export default function CommunicationsPage() {
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3">
                 <MessageSquare className="h-8 w-8 text-brand-primary" />
-                Mural de Comunicação
+                {t('title')}
               </h1>
               <p className="text-muted-foreground">
-                Fique por dentro das últimas novidades e comunicados da equipe
+                {t('subtitle')}
               </p>
             </div>
             <Link href="/communications/new">
               <Button className="bg-brand-primary hover:bg-brand-primary/90 pt-2 mt-3">
                 <Plus className="h-4 w-4 mr-2" />
-                Nova Postagem
+                {t('newPost')}
               </Button>
             </Link>
           </div>
@@ -117,7 +136,7 @@ export default function CommunicationsPage() {
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Buscar comunicações..."
+                    placeholder={t('searchPlaceholder')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-9"
@@ -125,13 +144,13 @@ export default function CommunicationsPage() {
                 </div>
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Categoria" />
+                    <SelectValue placeholder={t('category')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Todas</SelectItem>
+                    <SelectItem value="all">{t('allCategories')}</SelectItem>
                     {categories.map((category) => (
                       <SelectItem key={category} value={category}>
-                        {category}
+                        {getCategoryLabel(category)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -146,11 +165,11 @@ export default function CommunicationsPage() {
               <Card className="rounded-2xl">
                 <CardContent className="pt-6 text-center py-12">
                   <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground mb-4">Nenhuma comunicação encontrada.</p>
+                  <p className="text-muted-foreground mb-4">{t('notFound')}</p>
                   <Link href="/communications/new">
                     <Button className="bg-brand-primary hover:bg-brand-primary/90">
                       <Plus className="h-4 w-4 mr-2" />
-                      Criar primeira postagem
+                      {t('createFirst')}
                     </Button>
                   </Link>
                 </CardContent>

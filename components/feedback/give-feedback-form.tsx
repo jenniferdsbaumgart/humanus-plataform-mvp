@@ -14,21 +14,22 @@ import { Badge } from '@/components/ui/badge';
 import { StarRating } from './star-rating';
 import { useToast } from '@/hooks/use-toast';
 import { MessageSquarePlus, Send } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-const feedbackSchema = z.object({
-  to: z.string().min(1, 'Selecione um colega'),
-  toRole: z.string().min(1, 'Cargo é obrigatório'),
+const getFeedbackSchema = (t: any) => z.object({
+  to: z.string().min(1, t('valColleague')),
+  toRole: z.string().min(1, t('valRole')),
   type: z.enum(['positivo', 'construtivo'], {
-    required_error: 'Selecione o tipo de feedback'
+    required_error: t('valType')
   }),
   rating: z.number().min(1).max(5),
-  title: z.string().min(3, 'Título deve ter pelo menos 3 caracteres'),
-  content: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres'),
+  title: z.string().min(3, t('valTitle')),
+  content: z.string().min(10, t('valContent')),
   tags: z.array(z.string()).optional(),
   anonymous: z.boolean().optional()
 });
 
-type FeedbackForm = z.infer<typeof feedbackSchema>;
+type FeedbackForm = z.infer<ReturnType<typeof getFeedbackSchema>>;
 
 interface Colleague {
   id: string;
@@ -44,6 +45,7 @@ const availableTags = [
 ];
 
 export function GiveFeedbackForm() {
+  const t = useTranslations('Feedbacks.Form');
   const [colleagues, setColleagues] = useState<Colleague[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -57,7 +59,7 @@ export function GiveFeedbackForm() {
     reset,
     formState: { errors }
   } = useForm<FeedbackForm>({
-    resolver: zodResolver(feedbackSchema),
+    resolver: zodResolver(getFeedbackSchema(t)),
     defaultValues: {
       rating: 5,
       type: 'positivo',
@@ -107,8 +109,8 @@ export function GiveFeedbackForm() {
 
       if (response.ok) {
         toast({
-          title: "Feedback enviado!",
-          description: "Seu feedback foi enviado com sucesso e vale +5 pontos!",
+          title: t('successTitle'),
+          description: t('successDesc'),
         });
         reset();
         setSelectedTags([]);
@@ -117,8 +119,8 @@ export function GiveFeedbackForm() {
       }
     } catch (error) {
       toast({
-        title: "Erro",
-        description: "Não foi possível enviar o feedback. Tente novamente.",
+        title: t('errorTitle'),
+        description: t('errorDesc'),
         variant: "destructive",
       });
     } finally {
@@ -131,20 +133,20 @@ export function GiveFeedbackForm() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <MessageSquarePlus className="h-6 w-6 text-brand-primary" />
-          Enviar Feedback
+          {t('formTitle')}
         </CardTitle>
         <CardDescription>
-          Compartilhe feedback construtivo com seus colegas e ganhe +5 pontos
+          {t('formDesc')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Seleção de Colega */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Colega</label>
+            <label className="text-sm font-medium">{t('colleagueLabel')}</label>
             <Select onValueChange={(value) => setValue('to', value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecione um colega" />
+                <SelectValue placeholder={t('selectColleague')} />
               </SelectTrigger>
               <SelectContent>
                 {colleagues.map((colleague) => (
@@ -164,14 +166,14 @@ export function GiveFeedbackForm() {
 
           {/* Tipo de Feedback */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Tipo de Feedback</label>
+            <label className="text-sm font-medium">{t('typeLabel')}</label>
             <Select onValueChange={(value: 'positivo' | 'construtivo') => setValue('type', value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecione o tipo" />
+                <SelectValue placeholder={t('selectType')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="positivo">Positivo - Reconhecimento</SelectItem>
-                <SelectItem value="construtivo">Construtivo - Sugestão de melhoria</SelectItem>
+                <SelectItem value="positivo">{t('typePositive')}</SelectItem>
+                <SelectItem value="construtivo">{t('typeConstructive')}</SelectItem>
               </SelectContent>
             </Select>
             {errors.type && (
@@ -181,14 +183,14 @@ export function GiveFeedbackForm() {
 
           {/* Avaliação */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Avaliação (1-5 estrelas)</label>
+            <label className="text-sm font-medium">{t('ratingLabel')}</label>
             <div className="flex items-center gap-2">
               <StarRating
                 rating={rating}
                 onRatingChange={(newRating) => setValue('rating', newRating)}
               />
               <span className="text-sm text-muted-foreground">
-                {rating}/5 estrelas
+                {t('starsCount', { rating })}
               </span>
             </div>
             {errors.rating && (
@@ -198,10 +200,10 @@ export function GiveFeedbackForm() {
 
           {/* Título */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Título</label>
+            <label className="text-sm font-medium">{t('titleLabel')}</label>
             <Input
               {...register('title')}
-              placeholder="Ex: Excelente trabalho em equipe"
+              placeholder={t('titlePlaceholder')}
             />
             {errors.title && (
               <p className="text-sm text-red-500">{errors.title.message}</p>
@@ -210,10 +212,10 @@ export function GiveFeedbackForm() {
 
           {/* Mensagem */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Mensagem</label>
+            <label className="text-sm font-medium">{t('contentLabel')}</label>
             <Textarea
               {...register('content')}
-              placeholder="Descreva seu feedback..."
+              placeholder={t('contentPlaceholder')}
               className="min-h-[120px]"
             />
             {errors.content && (
@@ -223,7 +225,7 @@ export function GiveFeedbackForm() {
 
           {/* Tags */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Tags (opcional)</label>
+            <label className="text-sm font-medium">{t('tagsLabel')}</label>
             <div className="flex flex-wrap gap-2">
               {availableTags.map((tag) => (
                 <Badge
@@ -250,7 +252,7 @@ export function GiveFeedbackForm() {
               htmlFor="anonymous"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Enviar anonimamente
+              {t('anonLabel')}
             </label>
           </div>
 
@@ -261,11 +263,11 @@ export function GiveFeedbackForm() {
             className="w-full bg-brand-primary hover:bg-brand-primary/90"
           >
             {loading ? (
-              "Enviando..."
+              t('sending')
             ) : (
               <>
                 <Send className="h-4 w-4 mr-2" />
-                Enviar Feedback (+5 pontos)
+                {t('sendBtn')}
               </>
             )}
           </Button>
