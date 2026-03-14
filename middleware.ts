@@ -1,16 +1,17 @@
 import createMiddleware from 'next-intl/middleware';
-import { locales } from './i18n';
 
 export default createMiddleware({
-  // Uma lista de todas as localidades suportadas
-  locales: locales,
+  // Lista de localidades suportadas
+  locales: ['pt-BR', 'en-GB'],
 
-  // Se essa opção for fornecida, o local padrão será retornado
-  // quando não houver correspondência com nenhum dos suportados.
-  defaultLocale: 'pt-BR'
+  // Localidade padrão
+  defaultLocale: 'pt-BR',
+  
+  // Garante que o locale sempre apareça na URL
+  localePrefix: 'always'
 });
 
 export const config = {
-  // Ignore todos os caminhos iniciados por /api, /_next, etc
+  // Ignorar arquivos estáticos e APIs
   matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };
