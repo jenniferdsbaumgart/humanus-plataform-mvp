@@ -13,9 +13,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
-      </head>
-      <body style={{ fontFamily: 'Inter, sans-serif' }}>
+      <body style={{ fontFamily: 'Inter, sans-serif' }} suppressHydrationWarning>
         <Providers locale={locale} messages={messages}>
           {children}
         </Providers>
